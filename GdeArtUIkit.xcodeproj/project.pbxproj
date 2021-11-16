@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A7287C575ABCF9087FDA0C8 /* Pods_GdeArtUIkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B4AC98C476ED052492C836 /* Pods_GdeArtUIkit.framework */; };
 		EE4AF6C427410422004E3553 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6C327410422004E3553 /* AppDelegate.swift */; };
 		EE4AF6C627410422004E3553 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6C527410422004E3553 /* SceneDelegate.swift */; };
 		EE4AF6C827410422004E3553 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6C727410422004E3553 /* ViewController.swift */; };
@@ -16,9 +17,14 @@
 		EE4AF6D827411E4F004E3553 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6D727411E4F004E3553 /* MainTabBarController.swift */; };
 		EE4AF6DA2741227B004E3553 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6D92741227B004E3553 /* LoginViewController.swift */; };
 		EE4AF6DF27412B22004E3553 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6DE27412B22004E3553 /* Extensions.swift */; };
+		EE6214172744073D00ABB57A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE6214162744073D00ABB57A /* GoogleService-Info.plist */; };
+		EE7B0D9B274410C0009F31C1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B0D9A274410C0009F31C1 /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22B4AC98C476ED052492C836 /* Pods_GdeArtUIkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GdeArtUIkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD1FA440DA518189D0DB9234 /* Pods-GdeArtUIkit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GdeArtUIkit.debug.xcconfig"; path = "Target Support Files/Pods-GdeArtUIkit/Pods-GdeArtUIkit.debug.xcconfig"; sourceTree = "<group>"; };
+		E8816160671DD933CE9B19F3 /* Pods-GdeArtUIkit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GdeArtUIkit.release.xcconfig"; path = "Target Support Files/Pods-GdeArtUIkit/Pods-GdeArtUIkit.release.xcconfig"; sourceTree = "<group>"; };
 		EE4AF6C027410422004E3553 /* GdeArtUIkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GdeArtUIkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE4AF6C327410422004E3553 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE4AF6C527410422004E3553 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +36,8 @@
 		EE4AF6D727411E4F004E3553 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		EE4AF6D92741227B004E3553 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EE4AF6DE27412B22004E3553 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		EE6214162744073D00ABB57A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EE7B0D9A274410C0009F31C1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +45,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A7287C575ABCF9087FDA0C8 /* Pods_GdeArtUIkit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		81FBBCEF7780BFD68B940DA3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BD1FA440DA518189D0DB9234 /* Pods-GdeArtUIkit.debug.xcconfig */,
+				E8816160671DD933CE9B19F3 /* Pods-GdeArtUIkit.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D1EFC854ED3EEFD85ABDC3F6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				22B4AC98C476ED052492C836 /* Pods_GdeArtUIkit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EE4AF6B727410422004E3553 = {
 			isa = PBXGroup;
 			children = (
 				EE4AF6C227410422004E3553 /* GdeArtUIkit */,
 				EE4AF6C127410422004E3553 /* Products */,
+				81FBBCEF7780BFD68B940DA3 /* Pods */,
+				D1EFC854ED3EEFD85ABDC3F6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				EE4AF6D92741227B004E3553 /* LoginViewController.swift */,
+				EE7B0D9A274410C0009F31C1 /* SignUpViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -85,6 +114,7 @@
 			children = (
 				EE4AF6C327410422004E3553 /* AppDelegate.swift */,
 				EE4AF6C527410422004E3553 /* SceneDelegate.swift */,
+				EE6214162744073D00ABB57A /* GoogleService-Info.plist */,
 				EE4AF6C927410422004E3553 /* Main.storyboard */,
 				EE4AF6CE27410423004E3553 /* LaunchScreen.storyboard */,
 				EE4AF6CC27410423004E3553 /* Assets.xcassets */,
@@ -107,9 +137,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE4AF6D427410423004E3553 /* Build configuration list for PBXNativeTarget "GdeArtUIkit" */;
 			buildPhases = (
+				873544C287C964743DDE4AB6 /* [CP] Check Pods Manifest.lock */,
 				EE4AF6BC27410422004E3553 /* Sources */,
 				EE4AF6BD27410422004E3553 /* Frameworks */,
 				EE4AF6BE27410422004E3553 /* Resources */,
+				9544E2E9C2A52C9140DD7D2C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -160,11 +192,54 @@
 			files = (
 				EE4AF6D027410423004E3553 /* LaunchScreen.storyboard in Resources */,
 				EE4AF6CD27410423004E3553 /* Assets.xcassets in Resources */,
+				EE6214172744073D00ABB57A /* GoogleService-Info.plist in Resources */,
 				EE4AF6CB27410422004E3553 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		873544C287C964743DDE4AB6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GdeArtUIkit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9544E2E9C2A52C9140DD7D2C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GdeArtUIkit/Pods-GdeArtUIkit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GdeArtUIkit/Pods-GdeArtUIkit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GdeArtUIkit/Pods-GdeArtUIkit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EE4AF6BC27410422004E3553 /* Sources */ = {
@@ -172,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE4AF6C827410422004E3553 /* ViewController.swift in Sources */,
+				EE7B0D9B274410C0009F31C1 /* SignUpViewController.swift in Sources */,
 				EE4AF6DF27412B22004E3553 /* Extensions.swift in Sources */,
 				EE4AF6C427410422004E3553 /* AppDelegate.swift in Sources */,
 				EE4AF6D827411E4F004E3553 /* MainTabBarController.swift in Sources */,
@@ -320,6 +396,7 @@
 		};
 		EE4AF6D527410423004E3553 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD1FA440DA518189D0DB9234 /* Pods-GdeArtUIkit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -348,6 +425,7 @@
 		};
 		EE4AF6D627410423004E3553 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8816160671DD933CE9B19F3 /* Pods-GdeArtUIkit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
