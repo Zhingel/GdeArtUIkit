@@ -11,12 +11,12 @@ import UIKit
 class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.async {
-            let loginViewController = LoginViewController()
-            let navigationController = UINavigationController(rootViewController: loginViewController)
-            navigationController.modalPresentationStyle = .fullScreen
-            self.present(navigationController, animated: true)
-        }
+//        DispatchQueue.main.async {
+//            let loginViewController = LoginViewController()
+//            let navigationController = UINavigationController(rootViewController: loginViewController)
+//            navigationController.modalPresentationStyle = .fullScreen
+//            self.present(navigationController, animated: true)
+//        }
         setupViewControllers()
     }
     

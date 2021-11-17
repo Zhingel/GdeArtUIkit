@@ -10,6 +10,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class SignUpViewController: UIViewController {
+//MARK: - setup Values
     let button: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("SignUp", for: .normal)
@@ -46,13 +47,13 @@ class SignUpViewController: UIViewController {
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
-    
+//MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupStackView()
     }
-    
+//MARK: - setupViews
     func setupStackView() {
         let stackView = UIStackView(arrangedSubviews: [email, userName, password, passwordRepeat, button])
         stackView.axis = .vertical
@@ -64,6 +65,7 @@ class SignUpViewController: UIViewController {
         goToLogin.constraints(top: nil, bottom: view.bottomAnchor, left: nil, right: nil, paddingTop: 0, paddingBottom: 20, paddingleft: 0, paddingRight: 0, width: 0, height: 0)
         goToLogin.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
+//MARK: - Button's Handlers
     @objc func createUser() {
         guard let email = email.text else {return}
         guard let userName = userName.text else {return}

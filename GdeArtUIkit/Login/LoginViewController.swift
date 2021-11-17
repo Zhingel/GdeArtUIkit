@@ -13,6 +13,7 @@ import FirebaseStorage
 import GoogleSignIn
 
 class LoginViewController: UIViewController {
+//MARK: - setup Values
     let button: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Login", for: .normal)
@@ -46,14 +47,13 @@ class LoginViewController: UIViewController {
         button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         return button
     }()
-    
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupStackView()
     }
-   
-    
+    //MARK: - setupViews
     func setupStackView() {
         let stackView = UIStackView(arrangedSubviews: [userName, password, button, googleButton])
         stackView.axis = .vertical
@@ -65,6 +65,7 @@ class LoginViewController: UIViewController {
         goToSignUp.constraints(top: nil, bottom: view.bottomAnchor, left: nil, right: nil, paddingTop: 0, paddingBottom: 20, paddingleft: 0, paddingRight: 0, width: 0, height: 0)
         goToSignUp.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
+    //MARK: - Button handlers
     @objc func loginUser() {
         guard let email = userName.text else {return}
         guard let password = password.text else {return}
@@ -83,29 +84,27 @@ class LoginViewController: UIViewController {
         present(signUpViewController, animated: false)
     }
     @objc func googleLogin() {
-//        let signInConfig = GIDConfiguration.init(clientID: "974050221390-5a48b3pkeh0alg9fgd1tqrn65dqd4do7.apps.googleusercontent.com")
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-
         let config = GIDConfiguration(clientID: clientID)
-
-        GIDSignIn.sharedInstance.signIn(with: config, presenting: self) {  user, error in
-
-          if let error = error {
-            print("Error login with GoogleAccaunt", error)
-            return
-          }
-
-          guard
-            let authentication = user?.authentication,
-            let idToken = authentication.idToken
-          else {
-            return
-          }
-
-          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                         accessToken: authentication.accessToken)
-
-          
+        GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { user, error in
+            guard error == nil else { return }
+            guard let user = user else { return }
+            if let profiledata = user.profile {
+                let uid : String = user.userID ?? ""
+                let givenName : String = profiledata.givenName ?? ""
+                let familyName : String = profiledata.familyName ?? ""
+                let email : String = profiledata.email
+                let userName = "\(givenName) \(familyName)"
+                let dictionaryValues = ["email" : email, "userName" : userName]
+                let values = [ uid : dictionaryValues]
+                Database.database().reference().child("users").updateChildValues(values) { (err, ref) in
+                    if let err = err {
+                        print("error to safe user info in database", err)
+                        return
+                    }
+                    print("successfuly save user")
+                }
+            }
         }
     }
 }
