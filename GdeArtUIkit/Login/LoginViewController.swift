@@ -10,6 +10,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
     let button: UIButton = {
@@ -17,6 +18,14 @@ class LoginViewController: UIViewController {
         button.setTitle("Login", for: .normal)
         button.tintColor = .white
         button.addTarget(self, action: #selector(loginUser), for: .touchUpInside)
+        button.backgroundColor = .blue
+        return button
+    }()
+    let googleButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Google", for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(googleLogin), for: .touchUpInside)
         button.backgroundColor = .blue
         return button
     }()
@@ -46,11 +55,11 @@ class LoginViewController: UIViewController {
    
     
     func setupStackView() {
-        let stackView = UIStackView(arrangedSubviews: [userName, password, button])
+        let stackView = UIStackView(arrangedSubviews: [userName, password, button, googleButton])
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         view.addSubview(stackView)
-        stackView.constraints(top: view.topAnchor, bottom: nil, left: nil, right: nil, paddingTop: 300, paddingBottom: 0, paddingleft: 0, paddingRight: 0, width: 250, height: 150)
+        stackView.constraints(top: view.topAnchor, bottom: nil, left: nil, right: nil, paddingTop: 300, paddingBottom: 0, paddingleft: 0, paddingRight: 0, width: 250, height: 200)
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         view.addSubview(goToSignUp)
         goToSignUp.constraints(top: nil, bottom: view.bottomAnchor, left: nil, right: nil, paddingTop: 0, paddingBottom: 20, paddingleft: 0, paddingRight: 0, width: 0, height: 0)
@@ -60,17 +69,43 @@ class LoginViewController: UIViewController {
         guard let email = userName.text else {return}
         guard let password = password.text else {return}
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-          guard let strongSelf = self else { return }
+            guard self != nil else { return }
             if let error = error {
                 print("Error with Login", error)
                 return
             }
-            print("Succesfull Login", authResult?.user.uid)
+            print("Succesfull Login", authResult?.user.uid ?? "")
         }
     }
     @objc func handleSignUp() {
         let signUpViewController = SignUpViewController()
         signUpViewController.modalPresentationStyle = .fullScreen
         present(signUpViewController, animated: false)
+    }
+    @objc func googleLogin() {
+//        let signInConfig = GIDConfiguration.init(clientID: "974050221390-5a48b3pkeh0alg9fgd1tqrn65dqd4do7.apps.googleusercontent.com")
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+        let config = GIDConfiguration(clientID: clientID)
+
+        GIDSignIn.sharedInstance.signIn(with: config, presenting: self) {  user, error in
+
+          if let error = error {
+            print("Error login with GoogleAccaunt", error)
+            return
+          }
+
+          guard
+            let authentication = user?.authentication,
+            let idToken = authentication.idToken
+          else {
+            return
+          }
+
+          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                         accessToken: authentication.accessToken)
+
+          
+        }
     }
 }

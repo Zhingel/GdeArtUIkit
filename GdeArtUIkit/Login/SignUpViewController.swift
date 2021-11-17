@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class SignUpViewController: UIViewController {
     let button: UIButton = {
@@ -20,6 +21,11 @@ class SignUpViewController: UIViewController {
     let userName: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Enter Username"
+        return textField
+    }()
+    let email: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Enter Email"
         return textField
     }()
     let password: UITextField = {
@@ -48,7 +54,7 @@ class SignUpViewController: UIViewController {
     }
     
     func setupStackView() {
-        let stackView = UIStackView(arrangedSubviews: [userName, password, passwordRepeat, button])
+        let stackView = UIStackView(arrangedSubviews: [email, userName, password, passwordRepeat, button])
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         view.addSubview(stackView)
@@ -59,10 +65,24 @@ class SignUpViewController: UIViewController {
         goToLogin.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     @objc func createUser() {
-        guard let email = userName.text else {return}
+        guard let email = email.text else {return}
+        guard let userName = userName.text else {return}
         guard let password = password.text else {return}
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-           //
+            if let error = error {
+                print("Failed to create user", error)
+                return
+            }
+            guard let uid = authResult?.user.uid else {return}
+            let dictionaryValues = ["email" : email, "userName" : userName]
+            let values = [ uid : dictionaryValues]
+            Database.database().reference().child("users").updateChildValues(values) { (err, ref) in
+                if let err = err {
+                    print("error to safe user info in database", err)
+                    return
+                }
+                print("successfuly save user")
+            }
         }
     }
     @objc func handleLogin() {
