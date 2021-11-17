@@ -19,6 +19,7 @@
 		EE4AF6DF27412B22004E3553 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6DE27412B22004E3553 /* Extensions.swift */; };
 		EE6214172744073D00ABB57A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE6214162744073D00ABB57A /* GoogleService-Info.plist */; };
 		EE7B0D9B274410C0009F31C1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B0D9A274410C0009F31C1 /* SignUpViewController.swift */; };
+		EE7B0D9F27452953009F31C1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B0D9E27452953009F31C1 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		EE4AF6DE27412B22004E3553 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EE6214162744073D00ABB57A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE7B0D9A274410C0009F31C1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		EE7B0D9E27452953009F31C1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				EE4AF6D727411E4F004E3553 /* MainTabBarController.swift */,
 				EE7B0D9C27450C06009F31C1 /* Profile */,
 				EE4AF6DB2741228A004E3553 /* Login */,
+				EE7B0D9D2745293C009F31C1 /* Models */,
 				EE4AF6DD27412B07004E3553 /* Extansions */,
 				EE4AF6DC27412315004E3553 /* System */,
 				EE4AF6D127410423004E3553 /* Info.plist */,
@@ -136,6 +139,14 @@
 				EE4AF6C727410422004E3553 /* ProfilePageViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		EE7B0D9D2745293C009F31C1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EE7B0D9E27452953009F31C1 /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +269,7 @@
 				EE7B0D9B274410C0009F31C1 /* SignUpViewController.swift in Sources */,
 				EE4AF6DF27412B22004E3553 /* Extensions.swift in Sources */,
 				EE4AF6C427410422004E3553 /* AppDelegate.swift in Sources */,
+				EE7B0D9F27452953009F31C1 /* User.swift in Sources */,
 				EE4AF6D827411E4F004E3553 /* MainTabBarController.swift in Sources */,
 				EE4AF6DA2741227B004E3553 /* LoginViewController.swift in Sources */,
 				EE4AF6C627410422004E3553 /* SceneDelegate.swift in Sources */,

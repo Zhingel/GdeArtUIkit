@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
     }()
     let userName: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Enter Username"
+        textField.placeholder = "Enter Email"
         return textField
     }()
     let password: UITextField = {
