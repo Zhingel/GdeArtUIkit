@@ -20,6 +20,8 @@
 		EE6214172744073D00ABB57A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE6214162744073D00ABB57A /* GoogleService-Info.plist */; };
 		EE7B0D9B274410C0009F31C1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B0D9A274410C0009F31C1 /* SignUpViewController.swift */; };
 		EE7B0D9F27452953009F31C1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B0D9E27452953009F31C1 /* User.swift */; };
+		EE7B0DA227453E36009F31C1 /* NewExhibitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B0DA127453E36009F31C1 /* NewExhibitionViewController.swift */; };
+		EE7B0DA4274549B2009F31C1 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B0DA3274549B2009F31C1 /* TextFieldView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		EE6214162744073D00ABB57A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE7B0D9A274410C0009F31C1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		EE7B0D9E27452953009F31C1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EE7B0DA127453E36009F31C1 /* NewExhibitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExhibitionViewController.swift; sourceTree = "<group>"; };
+		EE7B0DA3274549B2009F31C1 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				EE4AF6D727411E4F004E3553 /* MainTabBarController.swift */,
+				EE7B0DA027453DFA009F31C1 /* NewExhibition */,
 				EE7B0D9C27450C06009F31C1 /* Profile */,
 				EE4AF6DB2741228A004E3553 /* Login */,
 				EE7B0D9D2745293C009F31C1 /* Models */,
@@ -147,6 +152,15 @@
 				EE7B0D9E27452953009F31C1 /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EE7B0DA027453DFA009F31C1 /* NewExhibition */ = {
+			isa = PBXGroup;
+			children = (
+				EE7B0DA127453E36009F31C1 /* NewExhibitionViewController.swift */,
+				EE7B0DA3274549B2009F31C1 /* TextFieldView.swift */,
+			);
+			path = NewExhibition;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,10 +281,12 @@
 			files = (
 				EE4AF6C827410422004E3553 /* ProfilePageViewController.swift in Sources */,
 				EE7B0D9B274410C0009F31C1 /* SignUpViewController.swift in Sources */,
+				EE7B0DA4274549B2009F31C1 /* TextFieldView.swift in Sources */,
 				EE4AF6DF27412B22004E3553 /* Extensions.swift in Sources */,
 				EE4AF6C427410422004E3553 /* AppDelegate.swift in Sources */,
 				EE7B0D9F27452953009F31C1 /* User.swift in Sources */,
 				EE4AF6D827411E4F004E3553 /* MainTabBarController.swift in Sources */,
+				EE7B0DA227453E36009F31C1 /* NewExhibitionViewController.swift in Sources */,
 				EE4AF6DA2741227B004E3553 /* LoginViewController.swift in Sources */,
 				EE4AF6C627410422004E3553 /* SceneDelegate.swift in Sources */,
 			);

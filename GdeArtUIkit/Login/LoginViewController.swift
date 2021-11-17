@@ -30,7 +30,7 @@ class LoginViewController: UIViewController {
         button.backgroundColor = .blue
         return button
     }()
-    let userName: UITextField = {
+    let email: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Enter Email"
         return textField
@@ -55,19 +55,19 @@ class LoginViewController: UIViewController {
     }
     //MARK: - setupViews
     func setupStackView() {
-        let stackView = UIStackView(arrangedSubviews: [userName, password, button, googleButton])
+        let stackView = UIStackView(arrangedSubviews: [email, password, button, googleButton])
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         view.addSubview(stackView)
         stackView.constraints(top: view.topAnchor, bottom: nil, left: nil, right: nil, paddingTop: 300, paddingBottom: 0, paddingleft: 0, paddingRight: 0, width: 250, height: 200)
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         view.addSubview(goToSignUp)
-        goToSignUp.constraints(top: nil, bottom: view.bottomAnchor, left: nil, right: nil, paddingTop: 0, paddingBottom: 40, paddingleft: 0, paddingRight: 0, width: 0, height: 0)
+        goToSignUp.constraints(top: nil, bottom: view.bottomAnchor, left: nil, right: nil, paddingTop: 0, paddingBottom: 80, paddingleft: 0, paddingRight: 0, width: 0, height: 0)
         goToSignUp.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     //MARK: - Button handlers
     @objc func loginUser() {
-        guard let email = userName.text else {return}
+        guard let email = email.text else {return}
         guard let password = password.text else {return}
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             guard self != nil else { return }
@@ -80,8 +80,7 @@ class LoginViewController: UIViewController {
     }
     @objc func handleSignUp() {
         let signUpViewController = SignUpViewController()
-       // signUpViewController.modalPresentationStyle = .fullScreen
-        present(signUpViewController, animated: true)
+        navigationController?.pushViewController(signUpViewController, animated: false)
     }
     @objc func googleLogin() {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
@@ -124,6 +123,7 @@ class LoginViewController: UIViewController {
                             print(givenName)
                             print(email)
                             print("successfuly save user")
+                            self.dismiss(animated: false)
                     }
                 }
             

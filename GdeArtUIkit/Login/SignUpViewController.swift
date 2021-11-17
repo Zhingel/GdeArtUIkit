@@ -62,8 +62,9 @@ class SignUpViewController: UIViewController {
         stackView.constraints(top: view.topAnchor, bottom: nil, left: nil, right: nil, paddingTop: 300, paddingBottom: 0, paddingleft: 0, paddingRight: 0, width: 250, height: 200)
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         view.addSubview(goToLogin)
-        goToLogin.constraints(top: nil, bottom: view.bottomAnchor, left: nil, right: nil, paddingTop: 0, paddingBottom: 20, paddingleft: 0, paddingRight: 0, width: 0, height: 0)
+        goToLogin.constraints(top: nil, bottom: view.bottomAnchor, left: nil, right: nil, paddingTop: 0, paddingBottom: 80, paddingleft: 0, paddingRight: 0, width: 0, height: 0)
         goToLogin.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        navigationItem.hidesBackButton = true
     }
 //MARK: - Button's Handlers
     @objc func createUser() {
@@ -88,6 +89,6 @@ class SignUpViewController: UIViewController {
         }
     }
     @objc func handleLogin() {
-        dismiss(animated: false)
+        navigationController?.popToRootViewController(animated: false)
     }
 }

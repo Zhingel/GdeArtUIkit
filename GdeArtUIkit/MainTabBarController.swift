@@ -25,7 +25,8 @@ class MainTabBarController: UITabBarController {
     fileprivate func setupViewControllers() {
         view.backgroundColor = .white
       //  let layout = UICollectionViewFlowLayout()
-        let navViewController = UINavigationController(rootViewController: viewControlerChoose())
+        let viewController = ProfilePageViewController()
+        let navViewController = UINavigationController(rootViewController: viewController)
         navViewController.tabBarItem.image = UIImage(systemName: "person.circle")
         navViewController.tabBarItem.selectedImage = UIImage(systemName: "person.circle")
         navViewController.navigationBar.scrollEdgeAppearance = navViewController.navigationBar.standardAppearance
@@ -37,14 +38,5 @@ class MainTabBarController: UITabBarController {
         nav2ViewController.navigationBar.scrollEdgeAppearance = nav2ViewController.navigationBar.standardAppearance
         tabBar.tintColor = .black
         viewControllers = [nav2ViewController, navViewController]
-    }
-    func viewControlerChoose() -> UIViewController {
-        if Auth.auth().currentUser != nil {
-            let viewController = ProfilePageViewController()
-            return viewController
-        } else {
-            let viewController = LoginViewController()
-            return viewController
-        }
     }
 }
