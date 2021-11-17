@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
         stackView.constraints(top: view.topAnchor, bottom: nil, left: nil, right: nil, paddingTop: 300, paddingBottom: 0, paddingleft: 0, paddingRight: 0, width: 250, height: 200)
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         view.addSubview(goToSignUp)
-        goToSignUp.constraints(top: nil, bottom: view.bottomAnchor, left: nil, right: nil, paddingTop: 0, paddingBottom: 20, paddingleft: 0, paddingRight: 0, width: 0, height: 0)
+        goToSignUp.constraints(top: nil, bottom: view.bottomAnchor, left: nil, right: nil, paddingTop: 0, paddingBottom: 40, paddingleft: 0, paddingRight: 0, width: 0, height: 0)
         goToSignUp.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     //MARK: - Button handlers
@@ -80,31 +80,91 @@ class LoginViewController: UIViewController {
     }
     @objc func handleSignUp() {
         let signUpViewController = SignUpViewController()
-        signUpViewController.modalPresentationStyle = .fullScreen
-        present(signUpViewController, animated: false)
+       // signUpViewController.modalPresentationStyle = .fullScreen
+        present(signUpViewController, animated: true)
     }
     @objc func googleLogin() {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         let config = GIDConfiguration(clientID: clientID)
-        GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { user, error in
-            guard error == nil else { return }
-            guard let user = user else { return }
-            if let profiledata = user.profile {
-                let uid : String = user.userID ?? ""
-                let givenName : String = profiledata.givenName ?? ""
-                let familyName : String = profiledata.familyName ?? ""
-                let email : String = profiledata.email
-                let userName = "\(givenName) \(familyName)"
-                let dictionaryValues = ["email" : email, "userName" : userName]
-                let values = [ uid : dictionaryValues]
-                Database.database().reference().child("users").updateChildValues(values) { (err, ref) in
-                    if let err = err {
-                        print("error to safe user info in database", err)
-                        return
-                    }
-                    print("successfuly save user")
-                }
+        GIDSignIn.sharedInstance.signIn(with: config, presenting: self) {  user, error in
+            
+            if let error = error {
+              print(error)
+              return
             }
-        }
+
+            guard
+              let authentication = user?.authentication,
+              let idToken = authentication.idToken
+            else {
+              return
+            }
+
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                           accessToken: authentication.accessToken)
+
+            Auth.auth().signIn(with: credential) { authResult, error in
+                guard error == nil else { return }
+                guard let user = authResult?.user else { return }
+                    let uid : String = user.uid
+                    let givenName : String = user.displayName ?? ""
+                   // let familyName : String = profiledata.familyName ?? ""
+                    let email : String = user.email ?? ""
+                 //   let userName = "\(givenName) \(familyName)"
+                
+                
+                        let dictionaryValues = ["email" : email, "userName" : givenName]
+                        let values = [ uid : dictionaryValues]
+                        Database.database().reference().child("users").updateChildValues(values) { (err, ref) in
+                            if let err = err {
+                                print("error to safe user info in database", err)
+                                return
+                            }
+                            print(uid)
+                            print(givenName)
+                            print(email)
+                            print("successfuly save user")
+                    }
+                }
+            
+          }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//{ user, error in
+//    guard error == nil else { return }
+//    guard let user = user else { return }
+//    if let profiledata = user.profile {
+//        let uid : String = user.userID ?? ""
+//        let givenName : String = profiledata.givenName ?? ""
+//        let familyName : String = profiledata.familyName ?? ""
+//        let email : String = profiledata.email
+//        let userName = "\(givenName) \(familyName)"
+//
+//
+//        let dictionaryValues = ["email" : email, "userName" : userName]
+//        let values = [ uid : dictionaryValues]
+//        Database.database().reference().child("users").updateChildValues(values) { (err, ref) in
+//            if let err = err {
+//                print("error to safe user info in database", err)
+//                return
+//            }
+//            print("successfuly save user")
+//        }
+//    }
+//}

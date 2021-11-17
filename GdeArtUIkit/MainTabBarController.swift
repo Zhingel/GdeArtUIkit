@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
@@ -24,19 +25,26 @@ class MainTabBarController: UITabBarController {
     fileprivate func setupViewControllers() {
         view.backgroundColor = .white
       //  let layout = UICollectionViewFlowLayout()
-        let viewController = ViewController()
-        let navViewController = UINavigationController(rootViewController: viewController)
+        let navViewController = UINavigationController(rootViewController: viewControlerChoose())
         navViewController.tabBarItem.image = UIImage(systemName: "person.circle")
         navViewController.tabBarItem.selectedImage = UIImage(systemName: "person.circle")
         navViewController.navigationBar.scrollEdgeAppearance = navViewController.navigationBar.standardAppearance
         tabBar.tintColor = .black
-        
         let secondViewController = UIViewController()
         let nav2ViewController = UINavigationController(rootViewController: secondViewController)
         nav2ViewController.tabBarItem.image = UIImage(systemName: "rectangle.grid.1x2.fill")
         nav2ViewController.tabBarItem.selectedImage = UIImage(systemName: "rectangle.grid.1x2.fill")
         nav2ViewController.navigationBar.scrollEdgeAppearance = nav2ViewController.navigationBar.standardAppearance
         tabBar.tintColor = .black
-        viewControllers = [navViewController,nav2ViewController]
+        viewControllers = [nav2ViewController, navViewController]
+    }
+    func viewControlerChoose() -> UIViewController {
+        if Auth.auth().currentUser != nil {
+            let viewController = ProfilePageViewController()
+            return viewController
+        } else {
+            let viewController = LoginViewController()
+            return viewController
+        }
     }
 }
