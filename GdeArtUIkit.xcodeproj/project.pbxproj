@@ -22,6 +22,7 @@
 		EE7B0D9F27452953009F31C1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B0D9E27452953009F31C1 /* User.swift */; };
 		EE7B0DA227453E36009F31C1 /* NewExhibitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B0DA127453E36009F31C1 /* NewExhibitionViewController.swift */; };
 		EE7B0DA4274549B2009F31C1 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B0DA3274549B2009F31C1 /* TextFieldView.swift */; };
+		EE7B0DA62746628D009F31C1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B0DA52746628D009F31C1 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		EE7B0D9E27452953009F31C1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EE7B0DA127453E36009F31C1 /* NewExhibitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExhibitionViewController.swift; sourceTree = "<group>"; };
 		EE7B0DA3274549B2009F31C1 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		EE7B0DA52746628D009F31C1 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				EE7B0D9E27452953009F31C1 /* User.swift */,
+				EE7B0DA52746628D009F31C1 /* Post.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE4AF6C827410422004E3553 /* ProfilePageViewController.swift in Sources */,
+				EE7B0DA62746628D009F31C1 /* Post.swift in Sources */,
 				EE7B0D9B274410C0009F31C1 /* SignUpViewController.swift in Sources */,
 				EE7B0DA4274549B2009F31C1 /* TextFieldView.swift in Sources */,
 				EE4AF6DF27412B22004E3553 /* Extensions.swift in Sources */,

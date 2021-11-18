@@ -7,7 +7,11 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+
 class NewExhibitionViewController: UIViewController {
+    var post: Post?
     let exhibitionNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
@@ -76,6 +80,19 @@ class NewExhibitionViewController: UIViewController {
         saveOpenCallButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     @objc func handleSaveopenCall() {
-        print("save")
+        guard let curators = curatorNameTextField.exhibitionNameTextField.text else {return}
+        guard let openCall = openCallNameTextField.exhibitionNameTextField.text else {return}
+        guard let instagram = InstagramProfileTextField.exhibitionNameTextField.text else {return}
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let values = ["curators" : curators, "openCall" : openCall, "instagram" : instagram]
+        Database.database().reference().child("posts").child(uid).childByAutoId().updateChildValues(values) { (err, ref) in
+            if let err = err {
+                print("Failed", err)
+                return
+            }
+            print("Successfuly save to db")
+            self.dismiss(animated: true)
+        }
+        
     }
 }
