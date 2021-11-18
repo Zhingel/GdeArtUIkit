@@ -23,8 +23,6 @@ class NewExhibitionViewController: UIViewController {
         let view = UIView()
         view.tintColor = .black
         view.backgroundColor = .black
-//        view.frame.size.width = view.bounds.width
-//        view.frame.size.height = 1
         return view
     }()
     let openCallNameTextField: TextFieldView = {
@@ -39,6 +37,26 @@ class NewExhibitionViewController: UIViewController {
         tf.exhibitionNameTextField.placeholder = "enter Name"
         return tf
     }()
+    let InstagramProfileTextField: TextFieldView = {
+        let tf = TextFieldView()
+        tf.exhibitionNameLabel.text = "Instagram Profile:"
+        tf.exhibitionNameTextField.placeholder = "enter Name"
+        return tf
+    }()
+    let captionsTextField: TextFieldView = {
+        let tf = TextFieldView()
+        tf.exhibitionNameLabel.text = "Описание выставки"
+        tf.exhibitionNameTextField.placeholder = "enter Name"
+        return tf
+    }()
+    let saveOpenCallButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("save Open Call", for: .normal)
+        button.backgroundColor = .blue
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(handleSaveopenCall), for: .touchUpInside)
+        return button
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -47,11 +65,17 @@ class NewExhibitionViewController: UIViewController {
     }
     
     fileprivate func setupStackViews() {
-        let stackView = UIStackView(arrangedSubviews: [openCallNameTextField, curatorNameTextField])
-        stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        view.addSubview(stackView)
-        stackView.constraints(top: view.topAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 80, paddingBottom: 0, paddingleft: 30, paddingRight: -30, width: 0, height: 500)
-        
+        view.addSubview(openCallNameTextField)
+        openCallNameTextField.constraints(top: view.topAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 60, paddingBottom: 0, paddingleft: 15, paddingRight: 15, width: 0, height: 50)
+        view.addSubview(curatorNameTextField)
+        curatorNameTextField.constraints(top: openCallNameTextField.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingBottom: 0, paddingleft: 15, paddingRight: 15, width: 0, height: 50)
+        view.addSubview(InstagramProfileTextField)
+        InstagramProfileTextField.constraints(top: curatorNameTextField.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingBottom: 0, paddingleft: 15, paddingRight: 15, width: 0, height: 50)
+        view.addSubview(saveOpenCallButton)
+        saveOpenCallButton.constraints(top: nil, bottom: view.bottomAnchor, left: nil, right: nil, paddingTop: 0, paddingBottom: 25, paddingleft: 0, paddingRight: 0, width: 150, height: 40)
+        saveOpenCallButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
+    @objc func handleSaveopenCall() {
+        print("save")
     }
 }

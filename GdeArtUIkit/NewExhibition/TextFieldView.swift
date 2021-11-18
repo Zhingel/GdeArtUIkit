@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-class TextFieldView: UIView {
+class TextFieldView: UIView, UITextFieldDelegate {
     let exhibitionNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
@@ -24,6 +24,8 @@ class TextFieldView: UIView {
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 50.0)
+        exhibitionNameTextField.delegate = self
         self.addSubview(exhibitionNameLabel)
         exhibitionNameLabel.constraints(top: topAnchor, bottom: nil, left: leftAnchor, right: rightAnchor, paddingTop: 10, paddingBottom: 0, paddingleft: 15, paddingRight: 15, width: 0, height: 0)
         self.addSubview(exhibitionNameTextField)
