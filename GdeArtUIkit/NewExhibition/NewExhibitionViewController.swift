@@ -25,8 +25,7 @@ class NewExhibitionViewController: UIViewController {
     }()
     let borderView: UIView = {
         let view = UIView()
-        view.tintColor = .black
-        view.backgroundColor = .black
+        view.backgroundColor = .lightGray
         return view
     }()
     let openCallNameTextField: TextFieldView = {
@@ -73,6 +72,17 @@ class NewExhibitionViewController: UIViewController {
         button.addTarget(self, action: #selector(handleSaveopenCall), for: .touchUpInside)
         return button
     }()
+    let datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        return datePicker
+    }()
+    let datePickerLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.text = "Дедлайн:"
+        return label
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -90,8 +100,14 @@ class NewExhibitionViewController: UIViewController {
         view.addSubview(saveOpenCallButton)
         saveOpenCallButton.constraints(top: nil, bottom: view.bottomAnchor, left: nil, right: nil, paddingTop: 0, paddingBottom: 25, paddingleft: 0, paddingRight: 0, width: 150, height: 40)
         saveOpenCallButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        view.addSubview(datePickerLabel)
+        datePickerLabel.constraints(top: instagramProfileTextField.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingBottom: 0, paddingleft: 30, paddingRight: -15, width: 0, height: 0)
+        view.addSubview(datePicker)
+        datePicker.constraints(top: instagramProfileTextField.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 8, paddingBottom: 0, paddingleft: 30, paddingRight: -45, width: 0, height: 0)
+        view.addSubview(borderView)
+        borderView.constraints(top: datePickerLabel.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingBottom: 0, paddingleft: 30, paddingRight: -30, width: 0, height: 0.5)
         view.addSubview(descriptionLabel)
-        descriptionLabel.constraints(top: instagramProfileTextField.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingBottom: 0, paddingleft: 30, paddingRight: -15, width: 0, height: 0)
+        descriptionLabel.constraints(top: borderView.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingBottom: 0, paddingleft: 30, paddingRight: -15, width: 0, height: 0)
         view.addSubview(descriptionTextView)
         descriptionTextView.constraints(top: descriptionLabel.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 5, paddingBottom: 0, paddingleft: 30, paddingRight: -30, width: 0, height: 150)
     }
