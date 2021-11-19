@@ -41,7 +41,7 @@ class NewExhibitionViewController: UIViewController {
         tf.exhibitionNameTextField.placeholder = "enter Name"
         return tf
     }()
-    let InstagramProfileTextField: TextFieldView = {
+    let instagramProfileTextField: TextFieldView = {
         let tf = TextFieldView()
         tf.exhibitionNameLabel.text = "Instagram Profile:"
         tf.exhibitionNameTextField.placeholder = "enter Name"
@@ -52,6 +52,18 @@ class NewExhibitionViewController: UIViewController {
         tf.exhibitionNameLabel.text = "Описание выставки"
         tf.exhibitionNameTextField.placeholder = "enter Name"
         return tf
+    }()
+    let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.text = "Описание:"
+        return label
+    }()
+    let descriptionTextView: UITextView = {
+        let textView = UITextView()
+        textView.layer.borderWidth = 0.5
+        textView.layer.borderColor = UIColor.lightGray.cgColor
+        return textView
     }()
     let saveOpenCallButton: UIButton = {
         let button = UIButton(type: .system)
@@ -70,21 +82,26 @@ class NewExhibitionViewController: UIViewController {
     
     fileprivate func setupStackViews() {
         view.addSubview(openCallNameTextField)
-        openCallNameTextField.constraints(top: view.topAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 60, paddingBottom: 0, paddingleft: 15, paddingRight: 15, width: 0, height: 50)
+        openCallNameTextField.constraints(top: view.topAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 60, paddingBottom: 0, paddingleft: 15, paddingRight: -15, width: 0, height: 50)
         view.addSubview(curatorNameTextField)
-        curatorNameTextField.constraints(top: openCallNameTextField.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingBottom: 0, paddingleft: 15, paddingRight: 15, width: 0, height: 50)
-        view.addSubview(InstagramProfileTextField)
-        InstagramProfileTextField.constraints(top: curatorNameTextField.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingBottom: 0, paddingleft: 15, paddingRight: 15, width: 0, height: 50)
+        curatorNameTextField.constraints(top: openCallNameTextField.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingBottom: 0, paddingleft: 15, paddingRight: -15, width: 0, height: 50)
+        view.addSubview(instagramProfileTextField)
+        instagramProfileTextField.constraints(top: curatorNameTextField.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingBottom: 0, paddingleft: 15, paddingRight: -15, width: 0, height: 50)
         view.addSubview(saveOpenCallButton)
         saveOpenCallButton.constraints(top: nil, bottom: view.bottomAnchor, left: nil, right: nil, paddingTop: 0, paddingBottom: 25, paddingleft: 0, paddingRight: 0, width: 150, height: 40)
         saveOpenCallButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        view.addSubview(descriptionLabel)
+        descriptionLabel.constraints(top: instagramProfileTextField.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingBottom: 0, paddingleft: 30, paddingRight: -15, width: 0, height: 0)
+        view.addSubview(descriptionTextView)
+        descriptionTextView.constraints(top: descriptionLabel.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 5, paddingBottom: 0, paddingleft: 30, paddingRight: -30, width: 0, height: 150)
     }
     @objc func handleSaveopenCall() {
         guard let curators = curatorNameTextField.exhibitionNameTextField.text else {return}
         guard let openCall = openCallNameTextField.exhibitionNameTextField.text else {return}
-        guard let instagram = InstagramProfileTextField.exhibitionNameTextField.text else {return}
+        guard let instagram = instagramProfileTextField.exhibitionNameTextField.text else {return}
+        guard let description = descriptionTextView.text else {return}
         guard let uid = Auth.auth().currentUser?.uid else {return}
-        let values = ["curators" : curators, "openCall" : openCall, "instagram" : instagram]
+        let values = ["curators" : curators, "openCall" : openCall, "instagram" : instagram, "description" : description]
         Database.database().reference().child("posts").child(uid).childByAutoId().updateChildValues(values) { (err, ref) in
             if let err = err {
                 print("Failed", err)
