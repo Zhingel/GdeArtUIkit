@@ -43,7 +43,7 @@ class NewExhibitionViewController: UIViewController {
     let instagramProfileTextField: TextFieldView = {
         let tf = TextFieldView()
         tf.exhibitionNameLabel.text = "Instagram Profile:"
-        tf.exhibitionNameTextField.placeholder = "enter Name"
+        tf.exhibitionNameTextField.placeholder = "@data.in.art"
         return tf
     }()
     let captionsTextField: TextFieldView = {

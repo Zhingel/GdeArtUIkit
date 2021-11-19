@@ -13,15 +13,17 @@ class art: ObservableObject {
         fetchData()
     }
     func handleInstagram(instagram: String) {
-        let Username = instagram  // Your Instagram Username here
-            let appURL = URL(string: "instagram://user?username=\(Username)")!
+        let username = instagram.replacingOccurrences(of: "@", with: "")
+        // Your Instagram Username here
+        let name = username.deletingPrefix("https://www.instagram.com/").deletingPrefix("https://instagram.com/").deletingPrefix("www.instagram.com/").deletingPrefix("instagram.com/").deletingPrefix("http://www.instagram.com/")
+            let appURL = URL(string: "instagram://user?username=\(name)")!
             let application = UIApplication.shared
 
             if application.canOpenURL(appURL) {
                 application.open(appURL)
             } else {
                 // if Instagram app is not installed, open URL inside Safari
-                let webURL = URL(string: "https://instagram.com/\(Username)")!
+                let webURL = URL(string: "https://instagram.com/\(name)")!
                 application.open(webURL)
             }
     }
@@ -48,39 +50,10 @@ struct Task: Identifiable {
 
 
 
+extension String {
+    func deletingPrefix(_ prefix: String) -> String {
+        guard self.hasPrefix(prefix) else { return self }
+        return String(self.dropFirst(prefix.count))
+    }
+}
 
-
-
-//
-//class art: ObservableObject {
-//    
-//    @Published var posts = [PostwithId]()
-//    
-////    func fetchData() {
-////        let ref = Database.database().reference()
-////        ref.child("posts").observeSingleEvent(of: .value) { snapshot in
-////            guard let dictionaries = snapshot.value as? [String: Any] else {return}
-////            dictionaries.forEach { key, value in
-////                guard let dictionary = value as? [String: Any] else {return}
-////                let post = Post(dictionary: dictionary)
-////                let postWithId = PostwithId(post: post, key: key)
-////                self.posts.append(postWithId)
-////
-////            }
-////        }
-////    }
-//}
-//
-//struct PostwithId {
-//    let post: Post2
-//    let key: String
-//}
-//
-//struct Post2 {
-//    let userUid: String = "userUid"
-//    let openCallName: String = "DAta7"
-//    var curatorsName: String? = "curatorsName"
-//    var instagrammLink: String? = "instagrammLink"
-//    let description: String = "description"
-//
-//}
