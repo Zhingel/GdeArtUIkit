@@ -12,12 +12,17 @@ struct Post {
     var curatorsName: String?
     var instagrammLink: String?
     let description: String
+    let creationDate: Date
+    let deadLine: String
     init(dictionary: [String : Any]) {
         self.userUid = dictionary["userUid"] as? String ?? ""
         self.openCallName = dictionary["openCall"] as? String ?? ""
         self.curatorsName = dictionary["curators"] as? String ?? ""
         self.instagrammLink = dictionary["instagram"] as? String ?? ""
         self.description = dictionary["description"] as? String ?? ""
+        let secondsFrom1970 = dictionary["creationDate"] as? Double ?? 0
+        self.creationDate = Date(timeIntervalSince1970: secondsFrom1970)
+        self.deadLine = dictionary["deadLine"] as? String ?? ""
         
 //        let secondsFrom1970 = dictionary["creationDate"] as? Double ?? 0
 //        self.creationDate = Date(timeIntervalSince1970: secondsFrom1970)

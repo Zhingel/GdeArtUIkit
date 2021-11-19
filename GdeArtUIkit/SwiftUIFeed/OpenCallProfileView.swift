@@ -61,7 +61,7 @@ struct pageView: View {
                             VStack(spacing: 5) {
                                 Text(task.post.openCallName)
                                     .fontWeight(.bold)
-                                Text("Дэдлайн: 29.06.21")
+                                Text("Дедлайн: \(task.post.deadLine)")
                             }
                         }
                         .foregroundColor(.white)
@@ -99,8 +99,11 @@ struct pageView: View {
                     }
                     .offset(y: 70)
                     VStack(alignment: .leading, spacing: 10){
-                        VStack {
+                        VStack(alignment: .leading) {
                             Text(task.post.openCallName)
+                                .font(.system(size: 16, weight: .bold, design: .default))
+                            Text("Дедлайн: \(task.post.deadLine)")
+                                .font(.system(size: 12, weight: .semibold, design: .default))
                         }
                         .offset(x: -20, y: 10)
                         Spacer()
@@ -108,10 +111,20 @@ struct pageView: View {
                 
                         
                     }
-                    VStack {
-                        Text(task.post.description)
+                    HStack {
+                        VStack(alignment: .leading, spacing: 3) {
+                            if task.post.curatorsName != nil && task.post.curatorsName != ""{
+                                Text("Кураторы выставки:")
+                                    .font(.system(size: 16, weight: .semibold, design: .default))
+                                Text(task.post.curatorsName ?? "")
+                                    .font(.system(size: 16, weight: .regular, design: .default))
+                            }
+                            Text(task.post.description)
+                                .padding(.top, 10)
+                        }
+                        .padding(.top, 40)
+                        Spacer()
                     }
-                    .padding(.top, 40)
                     
                 }
                 .padding(.horizontal)

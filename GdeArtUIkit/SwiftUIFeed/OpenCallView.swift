@@ -26,7 +26,7 @@ struct taskCard: View {
                                 Text("Place: Moscow")
                                     .font(.system(size: 12))
                                     .foregroundColor(.gray)
-                                Text("Deadline: 29.09.2021")
+                                Text("Дедлайн: \(task.post.deadLine)")
                                     .font(.system(size: 12))
                                     .foregroundColor(.gray)
                             }

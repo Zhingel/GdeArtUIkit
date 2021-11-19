@@ -112,12 +112,16 @@ class NewExhibitionViewController: UIViewController {
         descriptionTextView.constraints(top: descriptionLabel.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 5, paddingBottom: 0, paddingleft: 30, paddingRight: -30, width: 0, height: 150)
     }
     @objc func handleSaveopenCall() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yy"
+        let deadline = dateFormatter.string(from: datePicker.date)
+        print(deadline)
         guard let curators = curatorNameTextField.exhibitionNameTextField.text else {return}
         guard let openCall = openCallNameTextField.exhibitionNameTextField.text else {return}
         guard let instagram = instagramProfileTextField.exhibitionNameTextField.text else {return}
         guard let description = descriptionTextView.text else {return}
         guard let uid = Auth.auth().currentUser?.uid else {return}
-        let values = ["curators" : curators, "openCall" : openCall, "instagram" : instagram, "description" : description, "userUid": uid]
+        let values = ["curators" : curators, "openCall" : openCall, "instagram" : instagram, "description" : description, "userUid": uid, "creationDate" : Date().timeIntervalSince1970, "deadLine" : deadline] as [String : Any]
         Database.database().reference().child("posts").childByAutoId().updateChildValues(values) { (err, ref) in
             if let err = err {
                 print("Failed", err)
