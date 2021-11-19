@@ -23,6 +23,8 @@
 		EE7B0DA227453E36009F31C1 /* NewExhibitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B0DA127453E36009F31C1 /* NewExhibitionViewController.swift */; };
 		EE7B0DA4274549B2009F31C1 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B0DA3274549B2009F31C1 /* TextFieldView.swift */; };
 		EE7B0DA62746628D009F31C1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B0DA52746628D009F31C1 /* Post.swift */; };
+		EEAF532A2747AF3600A13CFA /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF53292747AF3600A13CFA /* FeedViewController.swift */; };
+		EEAF532C2747B10600A13CFA /* OpenCallViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF532B2747B10600A13CFA /* OpenCallViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		EE7B0DA127453E36009F31C1 /* NewExhibitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExhibitionViewController.swift; sourceTree = "<group>"; };
 		EE7B0DA3274549B2009F31C1 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		EE7B0DA52746628D009F31C1 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		EEAF53292747AF3600A13CFA /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		EEAF532B2747B10600A13CFA /* OpenCallViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCallViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				EE4AF6D727411E4F004E3553 /* MainTabBarController.swift */,
+				EEAF53282747AF1E00A13CFA /* Feed */,
 				EE7B0DA027453DFA009F31C1 /* NewExhibition */,
 				EE7B0D9C27450C06009F31C1 /* Profile */,
 				EE4AF6DB2741228A004E3553 /* Login */,
@@ -164,6 +169,15 @@
 				EE7B0DA3274549B2009F31C1 /* TextFieldView.swift */,
 			);
 			path = NewExhibition;
+			sourceTree = "<group>";
+		};
+		EEAF53282747AF1E00A13CFA /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				EEAF53292747AF3600A13CFA /* FeedViewController.swift */,
+				EEAF532B2747B10600A13CFA /* OpenCallViewCell.swift */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEAF532C2747B10600A13CFA /* OpenCallViewCell.swift in Sources */,
 				EE4AF6C827410422004E3553 /* ProfilePageViewController.swift in Sources */,
 				EE7B0DA62746628D009F31C1 /* Post.swift in Sources */,
 				EE7B0D9B274410C0009F31C1 /* SignUpViewController.swift in Sources */,
@@ -292,6 +307,7 @@
 				EE4AF6D827411E4F004E3553 /* MainTabBarController.swift in Sources */,
 				EE7B0DA227453E36009F31C1 /* NewExhibitionViewController.swift in Sources */,
 				EE4AF6DA2741227B004E3553 /* LoginViewController.swift in Sources */,
+				EEAF532A2747AF3600A13CFA /* FeedViewController.swift in Sources */,
 				EE4AF6C627410422004E3553 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -24,14 +24,14 @@ class MainTabBarController: UITabBarController {
     
     fileprivate func setupViewControllers() {
         view.backgroundColor = .white
-      //  let layout = UICollectionViewFlowLayout()
+        let layout = UICollectionViewFlowLayout()
         let viewController = ProfilePageViewController()
         let navViewController = UINavigationController(rootViewController: viewController)
         navViewController.tabBarItem.image = UIImage(systemName: "person.circle")
         navViewController.tabBarItem.selectedImage = UIImage(systemName: "person.circle")
         navViewController.navigationBar.scrollEdgeAppearance = navViewController.navigationBar.standardAppearance
         tabBar.tintColor = .black
-        let secondViewController = UIViewController()
+        let secondViewController = FeedViewController(collectionViewLayout: layout)
         let nav2ViewController = UINavigationController(rootViewController: secondViewController)
         nav2ViewController.tabBarItem.image = UIImage(systemName: "rectangle.grid.1x2.fill")
         nav2ViewController.tabBarItem.selectedImage = UIImage(systemName: "rectangle.grid.1x2.fill")
