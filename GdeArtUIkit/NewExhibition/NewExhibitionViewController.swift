@@ -101,8 +101,8 @@ class NewExhibitionViewController: UIViewController {
         guard let instagram = instagramProfileTextField.exhibitionNameTextField.text else {return}
         guard let description = descriptionTextView.text else {return}
         guard let uid = Auth.auth().currentUser?.uid else {return}
-        let values = ["curators" : curators, "openCall" : openCall, "instagram" : instagram, "description" : description]
-        Database.database().reference().child("posts").child(uid).childByAutoId().updateChildValues(values) { (err, ref) in
+        let values = ["curators" : curators, "openCall" : openCall, "instagram" : instagram, "description" : description, "userUid": uid]
+        Database.database().reference().child("posts").childByAutoId().updateChildValues(values) { (err, ref) in
             if let err = err {
                 print("Failed", err)
                 return

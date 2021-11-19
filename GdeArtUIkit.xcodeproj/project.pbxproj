@@ -25,6 +25,11 @@
 		EE7B0DA62746628D009F31C1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B0DA52746628D009F31C1 /* Post.swift */; };
 		EEAF532A2747AF3600A13CFA /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF53292747AF3600A13CFA /* FeedViewController.swift */; };
 		EEAF532C2747B10600A13CFA /* OpenCallViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF532B2747B10600A13CFA /* OpenCallViewCell.swift */; };
+		EEAF532F2747DCF600A13CFA /* SwiftUIFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF532E2747DCF500A13CFA /* SwiftUIFeedViewController.swift */; };
+		EEAF53312747DD1400A13CFA /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF53302747DD1400A13CFA /* SwiftUIView.swift */; };
+		EEAF53332747DE9B00A13CFA /* OpenCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF53322747DE9B00A13CFA /* OpenCallView.swift */; };
+		EEAF53352747DEE500A13CFA /* OpenCallProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF53342747DEE500A13CFA /* OpenCallProfileView.swift */; };
+		EEAF53372747DF2900A13CFA /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF53362747DF2900A13CFA /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +55,11 @@
 		EE7B0DA52746628D009F31C1 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		EEAF53292747AF3600A13CFA /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		EEAF532B2747B10600A13CFA /* OpenCallViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCallViewCell.swift; sourceTree = "<group>"; };
+		EEAF532E2747DCF500A13CFA /* SwiftUIFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIFeedViewController.swift; sourceTree = "<group>"; };
+		EEAF53302747DD1400A13CFA /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		EEAF53322747DE9B00A13CFA /* OpenCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCallView.swift; sourceTree = "<group>"; };
+		EEAF53342747DEE500A13CFA /* OpenCallProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCallProfileView.swift; sourceTree = "<group>"; };
+		EEAF53362747DF2900A13CFA /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				EE4AF6D727411E4F004E3553 /* MainTabBarController.swift */,
+				EEAF532D2747DCCE00A13CFA /* SwiftUIFeed */,
 				EEAF53282747AF1E00A13CFA /* Feed */,
 				EE7B0DA027453DFA009F31C1 /* NewExhibition */,
 				EE7B0D9C27450C06009F31C1 /* Profile */,
@@ -178,6 +189,18 @@
 				EEAF532B2747B10600A13CFA /* OpenCallViewCell.swift */,
 			);
 			path = Feed;
+			sourceTree = "<group>";
+		};
+		EEAF532D2747DCCE00A13CFA /* SwiftUIFeed */ = {
+			isa = PBXGroup;
+			children = (
+				EEAF532E2747DCF500A13CFA /* SwiftUIFeedViewController.swift */,
+				EEAF53302747DD1400A13CFA /* SwiftUIView.swift */,
+				EEAF53342747DEE500A13CFA /* OpenCallProfileView.swift */,
+				EEAF53322747DE9B00A13CFA /* OpenCallView.swift */,
+				EEAF53362747DF2900A13CFA /* ViewModel.swift */,
+			);
+			path = SwiftUIFeed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,18 +320,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEAF532C2747B10600A13CFA /* OpenCallViewCell.swift in Sources */,
+				EEAF53352747DEE500A13CFA /* OpenCallProfileView.swift in Sources */,
 				EE4AF6C827410422004E3553 /* ProfilePageViewController.swift in Sources */,
 				EE7B0DA62746628D009F31C1 /* Post.swift in Sources */,
 				EE7B0D9B274410C0009F31C1 /* SignUpViewController.swift in Sources */,
 				EE7B0DA4274549B2009F31C1 /* TextFieldView.swift in Sources */,
 				EE4AF6DF27412B22004E3553 /* Extensions.swift in Sources */,
+				EEAF53332747DE9B00A13CFA /* OpenCallView.swift in Sources */,
 				EE4AF6C427410422004E3553 /* AppDelegate.swift in Sources */,
 				EE7B0D9F27452953009F31C1 /* User.swift in Sources */,
+				EEAF53372747DF2900A13CFA /* ViewModel.swift in Sources */,
+				EEAF532F2747DCF600A13CFA /* SwiftUIFeedViewController.swift in Sources */,
 				EE4AF6D827411E4F004E3553 /* MainTabBarController.swift in Sources */,
 				EE7B0DA227453E36009F31C1 /* NewExhibitionViewController.swift in Sources */,
 				EE4AF6DA2741227B004E3553 /* LoginViewController.swift in Sources */,
 				EEAF532A2747AF3600A13CFA /* FeedViewController.swift in Sources */,
 				EE4AF6C627410422004E3553 /* SceneDelegate.swift in Sources */,
+				EEAF53312747DD1400A13CFA /* SwiftUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,13 @@
 import Foundation
 import UIKit
 class OpenCallViewCell: UICollectionViewCell {
+    var post: Post? {
+        didSet {
+            openCallNameLabel.text = post?.openCallName
+            curatorsLabel.text = post?.curatorsName
+            descriptionLabel.text = post?.description
+        }
+    }
     let openCallNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)

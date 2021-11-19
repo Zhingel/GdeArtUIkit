@@ -7,13 +7,13 @@
 
 import Foundation
 struct Post {
-    let user: User
+    let userUid: String
     let openCallName: String
     var curatorsName: String?
     var instagrammLink: String?
     let description: String
-    init(user: User, dictionary: [String : Any]) {
-        self.user = user
+    init(dictionary: [String : Any]) {
+        self.userUid = dictionary["userUid"] as? String ?? ""
         self.openCallName = dictionary["openCallName"] as? String ?? ""
         self.curatorsName = dictionary["curatorsName"] as? String ?? ""
         self.instagrammLink = dictionary["instagrammLink"] as? String ?? ""
