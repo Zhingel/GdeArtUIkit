@@ -19,7 +19,6 @@ class FeedViewController: UICollectionViewController, UICollectionViewDelegateFl
         navigationItem.title = "Где Выставка"
         collectionView.register(OpenCallViewCell.self, forCellWithReuseIdentifier: "Cell")
         fetchData()
-        fetchUsers()
     }
     
     
@@ -53,10 +52,6 @@ class FeedViewController: UICollectionViewController, UICollectionViewDelegateFl
             print(self.posts)
             self.collectionView.reloadData()
         }
-    }
-    func fetchUsers() {
-        
-        
     }
 }
 

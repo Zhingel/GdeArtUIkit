@@ -89,7 +89,7 @@ struct pageView: View {
                         Spacer()
                         Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                             Text("Edit Profile")
-                                .padding(.vertical, 10)
+                                .padding(.vertical, 5)
                                 .padding(.horizontal)
                                 .background(
                                     Capsule()
@@ -99,60 +99,20 @@ struct pageView: View {
                     }
                     .offset(y: 70)
                     VStack(alignment: .leading, spacing: 10){
-                       HStack {
-                            Text("Placeholder")
-                        Spacer()
+                        VStack {
+                            Text(task.post.openCallName)
                         }
-                       .padding()
-                        HStack {
-                             Text("Placeholder")
-                         Spacer()
-                         }
-                        .padding()
-                        HStack {
-                             Text("Placeholder")
-                         Spacer()
-                         }
-                        .padding()
-                         HStack {
-                              Text("Placeholder")
-                          Spacer()
-                          }
-                         .padding()
-                        HStack {
-                             Text("Placeholder")
-                         Spacer()
-                         }
-                        .padding()
-                         HStack {
-                              Text("Placeholder")
-                          Spacer()
-                          }
-                         .padding()
-                        HStack {
-                            Text("Placeholder")
+                        .offset(x: -20, y: 10)
                         Spacer()
-                        }
-                       .padding(40)
-                        HStack {
-                             Text("Placeholder")
-                         Spacer()
-                         }
-                        .padding(40)
-                        HStack {
-                             Text("Placeholder")
-                         Spacer()
-                         }
-                        .padding(40)
-                         HStack {
-                              Text("Placeholder")
-                          Spacer()
-                          }
-                         .padding(40)
-                         .padding(.vertical, 80)
+                        
+                
                         
                     }
-                    .offset(y: 80)
+                    VStack {
+                        Text(task.post.description)
+                    }
+                    .padding(.top, 40)
+                    
                 }
                 .padding(.horizontal)
                 .zIndex(-offSet > 170 ? 0 : 1)
