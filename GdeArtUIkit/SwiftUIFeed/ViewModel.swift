@@ -16,9 +16,9 @@ class art: ObservableObject {
             let ref = Database.database().reference()
             ref.child("posts").observeSingleEvent(of: .value) { snapshot in
                 guard let dictionaries = snapshot.value as? [String: Any] else {return}
-                print(dictionaries)
                 dictionaries.forEach { key, value in
                     guard let dictionary = value as? [String: Any] else {return}
+                    print(dictionary)
                     let post = Post(dictionary: dictionary)
                     let postWithId = Task(id: key, post: post, showText: false)
                     self.tasks.append(postWithId)

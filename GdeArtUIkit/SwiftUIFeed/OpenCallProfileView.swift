@@ -9,6 +9,7 @@ import SwiftUI
 
 struct pageView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var task : Task
     @State var offSet: CGFloat = 0
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -58,7 +59,7 @@ struct pageView: View {
                                 })
                             }
                             VStack(spacing: 5) {
-                                Text("Дата 7")
+                                Text(task.post.openCallName)
                                     .fontWeight(.bold)
                                 Text("Дэдлайн: 29.06.21")
                             }
@@ -166,11 +167,7 @@ struct pageView: View {
     }
 }
 
-struct pageView_Previews: PreviewProvider {
-    static var previews: some View {
-        pageView()
-    }
-}
+
 
 
 extension View {

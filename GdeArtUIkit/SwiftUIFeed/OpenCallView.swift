@@ -12,7 +12,7 @@ struct taskCard: View {
         VStack {
             VStack(alignment: .leading) {
                 NavigationLink(
-                    destination: pageView(),
+                    destination: pageView(task: task),
                     label: {
                         HStack {
                             Image("1")

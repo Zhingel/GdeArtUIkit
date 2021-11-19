@@ -1,0 +1,6 @@
+framework module Pods_GdeArtUIkit {
+  umbrella header "Pods-GdeArtUIkit-umbrella.h"
+
+  export *
+  module * { export * }
+}
