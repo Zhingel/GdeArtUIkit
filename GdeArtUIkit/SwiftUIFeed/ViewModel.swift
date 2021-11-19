@@ -12,6 +12,19 @@ class art: ObservableObject {
     init() {
         fetchData()
     }
+    func handleInstagram(instagram: String) {
+        let Username = instagram  // Your Instagram Username here
+            let appURL = URL(string: "instagram://user?username=\(Username)")!
+            let application = UIApplication.shared
+
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                // if Instagram app is not installed, open URL inside Safari
+                let webURL = URL(string: "https://instagram.com/\(Username)")!
+                application.open(webURL)
+            }
+    }
         func fetchData() {
             let ref = Database.database().reference()
             ref.child("posts").observeSingleEvent(of: .value) { snapshot in
@@ -25,6 +38,7 @@ class art: ObservableObject {
                 }
             }
         }
+   
 }
 struct Task: Identifiable {
     var id: String

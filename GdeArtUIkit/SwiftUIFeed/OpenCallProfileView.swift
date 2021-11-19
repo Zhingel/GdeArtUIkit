@@ -9,6 +9,7 @@ import SwiftUI
 
 struct pageView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @ObservedObject var model = art()
     @State var task : Task
     @State var offSet: CGFloat = 0
     var body: some View {
@@ -119,8 +120,28 @@ struct pageView: View {
                                 Text(task.post.curatorsName ?? "")
                                     .font(.system(size: 16, weight: .regular, design: .default))
                             }
-                            Text(task.post.description)
+                            if task.post.instagrammLink != nil && task.post.instagrammLink != ""{
+                                Text("Контакты:")
+                                    .font(.system(size: 16, weight: .semibold, design: .default))
+                                HStack {
+                                    Image("insta")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 15, height: 15)
+                                    Button {
+                                        model.handleInstagram(instagram: task.post.instagrammLink ?? "")
+                                    } label: {
+                                        Text(task.post.instagrammLink ?? "")
+                                            .font(.system(size: 16, weight: .regular, design: .default))
+                                    }
+                                }
+
+                            }
+                            Text("Описание:")
                                 .padding(.top, 10)
+                                .font(.system(size: 16, weight: .semibold, design: .default))
+                            Text(task.post.description)
+                                
                         }
                         .padding(.top, 40)
                         Spacer()
