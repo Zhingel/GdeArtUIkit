@@ -9,6 +9,7 @@ import SwiftUI
 
 struct pageView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    let array = ["string", "array", "try"]
     @ObservedObject var model = art()
     @State var task : Task
     @State var offSet: CGFloat = 0
@@ -128,12 +129,17 @@ struct pageView: View {
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 15, height: 15)
-                                    Button {
-                                        model.handleInstagram(instagram: task.post.instagrammLink ?? "")
-                                    } label: {
-                                        Text(task.post.instagrammLink ?? "")
-                                            .font(.system(size: 16, weight: .regular, design: .default))
+                                    ForEach(model.separatedStringsArray(instagram: task.post.instagrammLink ?? ""), id: \.self) { name in
+                                        if name != "" {
+                                            Button {
+                                                model.handleInstagram(instagram: name)
+                                            } label: {
+                                                Text(name)
+                                                    .font(.system(size: 16, weight: .regular, design: .default))
+                                            }
+                                        }
                                     }
+                                    
                                 }
 
                             }

@@ -23,15 +23,10 @@ class art: ObservableObject {
     ///а потом внутри себя же выдаю еще массив
     func separatedStringsArray(instagram: String) -> [String] {
         let username = instagram.replacingOccurrences(of: "@", with: "")
-        var instagramNamesArray = [String]()
         let name = username.deletingPrefix("https://www.instagram.com/").deletingPrefix("https://instagram.com/").deletingPrefix("www.instagram.com/").deletingPrefix("instagram.com/").deletingPrefix("http://www.instagram.com/")
             let instagramNames: String = name
             let instagramArray = instagramNames.components(separatedBy: [" ", ","])
-        for hashTagName in instagramArray {
-            if hashTagName != "" {
-                instagramNamesArray.append(hashTagName)
-            }
-        }
+        print(instagramArray) ////????
         return instagramArray
     }
     func handleInstagram(instagram: String) {
