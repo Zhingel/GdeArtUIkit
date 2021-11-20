@@ -130,7 +130,6 @@ struct pageView: View {
                                         .frame(width: 15, height: 15)
                                     Button {
                                         model.handleInstagram(instagram: task.post.instagrammLink ?? "")
-                                        print(model.instagramNamesArray)
                                     } label: {
                                         Text(task.post.instagrammLink ?? "")
                                             .font(.system(size: 16, weight: .regular, design: .default))

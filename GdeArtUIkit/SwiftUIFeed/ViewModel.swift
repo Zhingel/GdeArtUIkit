@@ -7,9 +7,10 @@
 
 import Foundation
 import FirebaseDatabase
+import SwiftUI
 class art: ObservableObject {
     @Published var tasks = [Task]()
-    var instagramNamesArray = [String]()
+    
     init() {
         fetchData()
     }
@@ -20,29 +21,32 @@ class art: ObservableObject {
     ///так как она сама себя выполняет
     ///я уже поделил вытащил массив
     ///а потом внутри себя же выдаю еще массив
-    func handleInstagram(instagram: String) {
+    func separatedStringsArray(instagram: String) -> [String] {
         let username = instagram.replacingOccurrences(of: "@", with: "")
-        // Your Instagram Username here
+        var instagramNamesArray = [String]()
         let name = username.deletingPrefix("https://www.instagram.com/").deletingPrefix("https://instagram.com/").deletingPrefix("www.instagram.com/").deletingPrefix("instagram.com/").deletingPrefix("http://www.instagram.com/")
             let instagramNames: String = name
             let instagramArray = instagramNames.components(separatedBy: [" ", ","])
-            
         for hashTagName in instagramArray {
             if hashTagName != "" {
-                self.instagramNamesArray.append(hashTagName)
-                let appURL = URL(string: "instagram://user?username=\(hashTagName)")!
-                let application = UIApplication.shared
-                if application.canOpenURL(appURL) {
-                    application.open(appURL)
-                } else {
-                    // if Instagram app is not installed, open URL inside Safari
-                    let webURL = URL(string: "https://instagram.com/\(hashTagName)")!
-                    application.open(webURL)
-                    print(webURL)
-                }
+                instagramNamesArray.append(hashTagName)
             }
         }
+        return instagramArray
     }
+    func handleInstagram(instagram: String) {
+        let appURL = URL(string: "instagram://user?username=\(instagram)")!
+        let application = UIApplication.shared
+        if application.canOpenURL(appURL) {
+            application.open(appURL)
+        } else {
+            // if Instagram app is not installed, open URL inside Safari
+            let webURL = URL(string: "https://instagram.com/\(instagram)")!
+            application.open(webURL)
+            print(webURL)
+        }
+    }
+    
         func fetchData() {
             let ref = Database.database().reference()
             ref.child("posts").observeSingleEvent(of: .value) { snapshot in
