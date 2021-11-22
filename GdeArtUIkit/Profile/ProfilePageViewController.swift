@@ -10,7 +10,14 @@ import FirebaseAuth
 import SwiftUI
 
 class ProfilePageViewController: UIViewController {
-    let contentView = UIHostingController(rootView: ProfileSwiftUIView())
+    lazy var contentView: UIHostingController<ProfileSwiftUIView> = {
+        var view = ProfileSwiftUIView()
+        view.loginMenuHandler = { [weak self] in
+            self?.handleAdd()
+        }
+        let vc = UIHostingController(rootView: view)
+        return vc
+    }()
     let button: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("LogOut", for: .normal)

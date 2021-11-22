@@ -9,11 +9,10 @@ import SwiftUI
 import UIKit
 
 struct ProfileSwiftUIView: View {
-   
+    var loginMenuHandler: (() -> Void)?
     var body: some View {
         Button {
-            
-            
+           loginMenuHandler?()
         } label: {
             Text("Log OUt")
         }

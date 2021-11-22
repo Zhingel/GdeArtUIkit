@@ -128,8 +128,15 @@ class NewExhibitionViewController: UIViewController {
                 return
             }
             print("Successfuly save to db")
+            NotificationCenter.default.post(name: NSNotification.newPost,
+                                            object: nil,
+                                            userInfo: nil)
             self.dismiss(animated: true)
         }
         
     }
+}
+
+extension NSNotification {
+    static let newPost = Notification.Name.init("new_post")
 }

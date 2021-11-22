@@ -16,6 +16,9 @@ struct SwiftUIView: View {
                  taskCard(task: task)
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.newPost)) { _ in
+            self.model.fetchData()
+        }
     }
 }
 
