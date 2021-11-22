@@ -20,4 +20,6 @@ class SwiftUIFeedViewController: UIViewController {
         view.addSubview(contentView.view)
         contentView.view.constraints(top: view.topAnchor, bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 0, paddingBottom: 0, paddingleft: 0, paddingRight: 0, width: 0, height: 0)
     }
+    
+    
 }

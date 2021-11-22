@@ -46,6 +46,30 @@ struct taskCard: View {
             Image("1")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+            HStack {
+                NavigationLink {
+                    CommentsView(task: task)
+                        .navigationTitle(task.post.openCallName)
+                } label: {
+                    Image("comment")
+                }
+
+                Spacer()
+                Button {
+                    //
+                } label: {
+                    Image(systemName: "square.and.arrow.up")
+                        .foregroundColor(.black)
+                        .opacity(0.7)
+                }
+                Button {
+                    //
+                } label: {
+                    Image("ribbon")
+                }
+            }
+            .padding(.horizontal)
+            .font(.title2)
         }
         .padding(.vertical, 10)
      }

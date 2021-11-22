@@ -9,7 +9,6 @@ import SwiftUI
 
 struct pageView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    let array = ["string", "array", "try"]
     @ObservedObject var model = art()
     @State var task : Task
     @State var offSet: CGFloat = 0

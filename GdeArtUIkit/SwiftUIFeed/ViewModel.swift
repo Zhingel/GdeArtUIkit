@@ -15,12 +15,6 @@ class art: ObservableObject {
         fetchData()
     }
     
-    ///разделить нарезку строки
-    ///и
-    ///переход в инсту на разные функции
-    ///так как она сама себя выполняет
-    ///я уже поделил вытащил массив
-    ///а потом внутри себя же выдаю еще массив
     func separatedStringsArray(instagram: String) -> [String] {
         let username = instagram.replacingOccurrences(of: "@", with: "")
         let name = username.deletingPrefix("https://www.instagram.com/").deletingPrefix("https://instagram.com/").deletingPrefix("www.instagram.com/").deletingPrefix("instagram.com/").deletingPrefix("http://www.instagram.com/")
