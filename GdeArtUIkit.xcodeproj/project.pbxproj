@@ -26,6 +26,7 @@
 		EE94E582274920D700C64E33 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE94E581274920D700C64E33 /* CommentsView.swift */; };
 		EE94E5842749308200C64E33 /* ProfileSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE94E5832749308200C64E33 /* ProfileSwiftUIView.swift */; };
 		EE94E5862749321500C64E33 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE94E5852749321500C64E33 /* ProfileViewModel.swift */; };
+		EE94E5AA274CE0F400C64E33 /* OpenCallCreatorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE94E5A9274CE0F400C64E33 /* OpenCallCreatorsView.swift */; };
 		EEAF532A2747AF3600A13CFA /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF53292747AF3600A13CFA /* FeedViewController.swift */; };
 		EEAF532C2747B10600A13CFA /* OpenCallViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF532B2747B10600A13CFA /* OpenCallViewCell.swift */; };
 		EEAF532F2747DCF600A13CFA /* SwiftUIFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF532E2747DCF500A13CFA /* SwiftUIFeedViewController.swift */; };
@@ -59,6 +60,7 @@
 		EE94E581274920D700C64E33 /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		EE94E5832749308200C64E33 /* ProfileSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSwiftUIView.swift; sourceTree = "<group>"; };
 		EE94E5852749321500C64E33 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		EE94E5A9274CE0F400C64E33 /* OpenCallCreatorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCallCreatorsView.swift; sourceTree = "<group>"; };
 		EEAF53292747AF3600A13CFA /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		EEAF532B2747B10600A13CFA /* OpenCallViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCallViewCell.swift; sourceTree = "<group>"; };
 		EEAF532E2747DCF500A13CFA /* SwiftUIFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIFeedViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				EE4AF6C727410422004E3553 /* ProfilePageViewController.swift */,
 				EE94E5832749308200C64E33 /* ProfileSwiftUIView.swift */,
+				EE94E5A9274CE0F400C64E33 /* OpenCallCreatorsView.swift */,
 				EE94E5852749321500C64E33 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
@@ -331,6 +334,7 @@
 				EEAF532C2747B10600A13CFA /* OpenCallViewCell.swift in Sources */,
 				EE94E582274920D700C64E33 /* CommentsView.swift in Sources */,
 				EEAF53352747DEE500A13CFA /* OpenCallProfileView.swift in Sources */,
+				EE94E5AA274CE0F400C64E33 /* OpenCallCreatorsView.swift in Sources */,
 				EE4AF6C827410422004E3553 /* ProfilePageViewController.swift in Sources */,
 				EE7B0DA62746628D009F31C1 /* Post.swift in Sources */,
 				EE7B0D9B274410C0009F31C1 /* SignUpViewController.swift in Sources */,
