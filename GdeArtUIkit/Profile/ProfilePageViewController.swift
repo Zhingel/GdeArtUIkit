@@ -8,6 +8,8 @@
 import UIKit
 import FirebaseAuth
 import SwiftUI
+import FirebaseStorage
+import FirebaseDatabase
 
 class ProfilePageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 //    lazy var contentView: UIHostingController<ProfileSwiftUIView> = {
@@ -18,10 +20,11 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
 //        let vc = UIHostingController(rootView: view)
 //        return vc
 //    }()
+    
+  //  var user: User?
     let contentView = UIHostingController(rootView: ProfileSwiftUIView())
     let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "avatar")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
         return button
     }()
@@ -37,8 +40,10 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         guard let user = Auth.auth().currentUser else {return}
         navigationItem.title = user.displayName
+        plusPhotoButton.setImage(UIImage(named: "avatar")?.withRenderingMode(.alwaysOriginal), for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(logOutMethod))
         addChild(contentView)
         let hadderView = UIView()
@@ -88,10 +93,25 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
         present(alertController, animated: true)
     }
     @objc func handlePlusPhoto() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.allowsEditing = true
-        present(imagePickerController, animated: true, completion: nil)
+        let firebase = FirebaseData()
+        print(firebase.fetchUsers())
+        let users = FirebaseData.shared.fetchUsers()
+        print(users)
+        
+        print(FirebaseData.users)
+        
+        
+        
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Сменить фото", style: .default, handler: {_ in
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = self
+            imagePickerController.allowsEditing = true
+            self.present(imagePickerController, animated: true, completion: nil)
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alertController, animated: true)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editedImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
@@ -104,7 +124,40 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
         plusPhotoButton.layer.masksToBounds = true
 //        plusPhotoButton.layer.borderColor = UIColor.black.cgColor
 //        plusPhotoButton.layer.borderWidth = 1
+        guard let image = self.plusPhotoButton.imageView?.image else {return}
+        guard let uploadData = image.jpegData(compressionQuality: 0.3) else {return}
+        let fileName = UUID().uuidString
+        let storageRef = Storage.storage().reference().child("profile_images").child(fileName)
+        storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+            if error != nil {
+                print("failed to upload data")
+                return
+            }
+            storageRef.downloadURL(completion: { (url, error) in
+                    if error != nil {
+                        print(error!.localizedDescription)
+                        return
+                    }
+                    if let profileImageUrl = url?.absoluteString {
+                        print("Success")
+                        guard let user = Auth.auth().currentUser else {return}
+                        let uid = user.uid
+                        
+                        let dictionaryValues = ["profileImageUrl" : profileImageUrl]
+                        Database.database().reference().child("users").child(uid).updateChildValues(dictionaryValues) { (err, ref) in
+                            if let err = err {
+                                print("error to safe user info in database", err)
+                                return
+                            }
+                            print("successfuly save user")
+                           
+                        }
+                    }
+                })
+            
+        }
         dismiss(animated: true, completion: nil)
+        
         
     }
 }
