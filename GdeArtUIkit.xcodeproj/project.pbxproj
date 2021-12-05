@@ -105,14 +105,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EE3E1096275D15A9005FB97C /* Autorization */ = {
-			isa = PBXGroup;
-			children = (
-				EE3E1097275D15C4005FB97C /* AutorizationFireBase.swift */,
-			);
-			path = Autorization;
-			sourceTree = "<group>";
-		};
 		EE4AF6B727410422004E3553 = {
 			isa = PBXGroup;
 			children = (
@@ -136,7 +128,6 @@
 			children = (
 				EE4AF6D727411E4F004E3553 /* MainTabBarController.swift */,
 				EE3E1099275D18AC005FB97C /* ServiceLocator.swift */,
-				EE3E1096275D15A9005FB97C /* Autorization */,
 				EEAF532D2747DCCE00A13CFA /* SwiftUIFeed */,
 				EEAF53282747AF1E00A13CFA /* Feed */,
 				EE7B0DA027453DFA009F31C1 /* NewExhibition */,
@@ -214,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				EE94E5AC274FAC4700C64E33 /* FetchData.swift */,
+				EE3E1097275D15C4005FB97C /* AutorizationFireBase.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
