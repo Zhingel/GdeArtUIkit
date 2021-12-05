@@ -13,6 +13,7 @@ import FirebaseStorage
 import GoogleSignIn
 
 class LoginViewController: UIViewController {
+    let authorization = ServiceLocator().getAuthService()
 //MARK: - setup Values
     let button: UIButton = {
         let button = UIButton(type: .system)
@@ -67,62 +68,14 @@ class LoginViewController: UIViewController {
     }
     //MARK: - Button handlers
     @objc func loginUser() {
-        guard let email = email.text else {return}
-        guard let password = password.text else {return}
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-            guard self != nil else { return }
-            if let error = error {
-                print("Error with Login", error)
-                return
-            }
-            print("Succesfull Login", authResult?.user.uid ?? "")
-        }
+        authorization.autorizationWithEmail(loginController: self, email: email.text, password: password.text)
     }
     @objc func handleSignUp() {
         let signUpViewController = SignUpViewController()
         navigationController?.pushViewController(signUpViewController, animated: false)
     }
     @objc func googleLogin() {
-        let locator = ServiceLocator()
-        let googleAuthorization = locator.getAuthService()
-        googleAuthorization.autorizationWithGoogle(loginController: self)
+        authorization.autorizationWithGoogle(loginController: self)
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//{ user, error in
-//    guard error == nil else { return }
-//    guard let user = user else { return }
-//    if let profiledata = user.profile {
-//        let uid : String = user.userID ?? ""
-//        let givenName : String = profiledata.givenName ?? ""
-//        let familyName : String = profiledata.familyName ?? ""
-//        let email : String = profiledata.email
-//        let userName = "\(givenName) \(familyName)"
-//
-//
-//        let dictionaryValues = ["email" : email, "userName" : userName]
-//        let values = [ uid : dictionaryValues]
-//        Database.database().reference().child("users").updateChildValues(values) { (err, ref) in
-//            if let err = err {
-//                print("error to safe user info in database", err)
-//                return
-//            }
-//            print("successfuly save user")
-//        }
-//    }
-//}

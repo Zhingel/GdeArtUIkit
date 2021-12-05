@@ -85,6 +85,7 @@ class SignUpViewController: UIViewController {
                     return
                 }
                 print("successfuly save user")
+                self.dismiss(animated: false)
             }
         }
     }

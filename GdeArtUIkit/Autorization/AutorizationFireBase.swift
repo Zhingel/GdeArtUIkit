@@ -13,11 +13,24 @@ import UIKit
 
 
 protocol Autorization {
-
     func autorizationWithGoogle(loginController: UIViewController)
+    func autorizationWithEmail(loginController: UIViewController, email: String?, password: String?)
 }
 class AutorizationFireBase: Autorization {
     
+    func autorizationWithEmail(loginController: UIViewController, email: String?, password: String?) {
+        guard let email = email else {return}
+        guard let password = password else {return}
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            guard self != nil else { return }
+            if let error = error {
+                print("Error with Login", error)
+                return
+            }
+            print("Succesfull Login", authResult?.user.uid ?? "")
+            loginController.dismiss(animated: false)
+        }
+    }
     
     func autorizationWithGoogle(loginController: UIViewController) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
