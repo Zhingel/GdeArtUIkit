@@ -10,6 +10,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class SignUpViewController: UIViewController {
+    let registration = ServiceLocator().getAuthService()
 //MARK: - setup Values
     let button: UIButton = {
         let button = UIButton(type: .system)
@@ -68,26 +69,7 @@ class SignUpViewController: UIViewController {
     }
 //MARK: - Button's Handlers
     @objc func createUser() {
-        guard let email = email.text else {return}
-        guard let userName = userName.text else {return}
-        guard let password = password.text else {return}
-        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-            if let error = error {
-                print("Failed to create user", error)
-                return
-            }
-            guard let uid = authResult?.user.uid else {return}
-            let dictionaryValues = ["email" : email, "userName" : userName]
-            let values = [ uid : dictionaryValues]
-            Database.database().reference().child("users").updateChildValues(values) { (err, ref) in
-                if let err = err {
-                    print("error to safe user info in database", err)
-                    return
-                }
-                print("successfuly save user")
-                self.dismiss(animated: false)
-            }
-        }
+        registration.registrationWithEmail(registerController: self, email: email.text, userName: userName.text, password: password.text)
     }
     @objc func handleLogin() {
         navigationController?.popToRootViewController(animated: false)

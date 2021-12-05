@@ -9,12 +9,12 @@ import Foundation
 import FirebaseAuth
 import Firebase
 import GoogleSignIn
-import UIKit
 
 
 protocol Autorization {
     func autorizationWithGoogle(loginController: UIViewController)
     func autorizationWithEmail(loginController: UIViewController, email: String?, password: String?)
+    func registrationWithEmail(registerController: UIViewController, email: String?, userName: String?, password: String?)
 }
 class AutorizationFireBase: Autorization {
     
@@ -31,7 +31,28 @@ class AutorizationFireBase: Autorization {
             loginController.dismiss(animated: false)
         }
     }
-    
+    func registrationWithEmail(registerController: UIViewController, email: String?, userName: String?, password: String?) {
+        guard let email = email else {return}
+        guard let userName = userName else {return}
+        guard let password = password else {return}
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                print("Failed to create user", error)
+                return
+            }
+            guard let uid = authResult?.user.uid else {return}
+            let dictionaryValues = ["email" : email, "userName" : userName]
+            let values = [ uid : dictionaryValues]
+            Database.database().reference().child("users").updateChildValues(values) { (err, ref) in
+                if let err = err {
+                    print("error to safe user info in database", err)
+                    return
+                }
+                print("successfuly save user")
+                registerController.dismiss(animated: false)
+            }
+        }
+    }
     func autorizationWithGoogle(loginController: UIViewController) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         let config = GIDConfiguration(clientID: clientID)
