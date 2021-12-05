@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8A7287C575ABCF9087FDA0C8 /* Pods_GdeArtUIkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B4AC98C476ED052492C836 /* Pods_GdeArtUIkit.framework */; };
+		EE3E1098275D15C4005FB97C /* AutorizationFireBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E1097275D15C4005FB97C /* AutorizationFireBase.swift */; };
+		EE3E109A275D18AC005FB97C /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E1099275D18AC005FB97C /* ServiceLocator.swift */; };
 		EE4AF6C427410422004E3553 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6C327410422004E3553 /* AppDelegate.swift */; };
 		EE4AF6C627410422004E3553 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6C527410422004E3553 /* SceneDelegate.swift */; };
 		EE4AF6C827410422004E3553 /* ProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6C727410422004E3553 /* ProfilePageViewController.swift */; };
@@ -41,6 +43,8 @@
 		22B4AC98C476ED052492C836 /* Pods_GdeArtUIkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GdeArtUIkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD1FA440DA518189D0DB9234 /* Pods-GdeArtUIkit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GdeArtUIkit.debug.xcconfig"; path = "Target Support Files/Pods-GdeArtUIkit/Pods-GdeArtUIkit.debug.xcconfig"; sourceTree = "<group>"; };
 		E8816160671DD933CE9B19F3 /* Pods-GdeArtUIkit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GdeArtUIkit.release.xcconfig"; path = "Target Support Files/Pods-GdeArtUIkit/Pods-GdeArtUIkit.release.xcconfig"; sourceTree = "<group>"; };
+		EE3E1097275D15C4005FB97C /* AutorizationFireBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutorizationFireBase.swift; sourceTree = "<group>"; };
+		EE3E1099275D18AC005FB97C /* ServiceLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
 		EE4AF6C027410422004E3553 /* GdeArtUIkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GdeArtUIkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE4AF6C327410422004E3553 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE4AF6C527410422004E3553 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EE3E1096275D15A9005FB97C /* Autorization */ = {
+			isa = PBXGroup;
+			children = (
+				EE3E1097275D15C4005FB97C /* AutorizationFireBase.swift */,
+			);
+			path = Autorization;
+			sourceTree = "<group>";
+		};
 		EE4AF6B727410422004E3553 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				EE4AF6D727411E4F004E3553 /* MainTabBarController.swift */,
+				EE3E1099275D18AC005FB97C /* ServiceLocator.swift */,
+				EE3E1096275D15A9005FB97C /* Autorization */,
 				EEAF532D2747DCCE00A13CFA /* SwiftUIFeed */,
 				EEAF53282747AF1E00A13CFA /* Feed */,
 				EE7B0DA027453DFA009F31C1 /* NewExhibition */,
@@ -349,6 +363,7 @@
 				EE4AF6C827410422004E3553 /* ProfilePageViewController.swift in Sources */,
 				EE7B0DA62746628D009F31C1 /* Post.swift in Sources */,
 				EE7B0D9B274410C0009F31C1 /* SignUpViewController.swift in Sources */,
+				EE3E1098275D15C4005FB97C /* AutorizationFireBase.swift in Sources */,
 				EE94E5862749321500C64E33 /* ProfileViewModel.swift in Sources */,
 				EE7B0DA4274549B2009F31C1 /* TextFieldView.swift in Sources */,
 				EE4AF6DF27412B22004E3553 /* Extensions.swift in Sources */,
@@ -357,6 +372,7 @@
 				EE94E5AD274FAC4800C64E33 /* FetchData.swift in Sources */,
 				EE7B0D9F27452953009F31C1 /* User.swift in Sources */,
 				EEAF53372747DF2900A13CFA /* ViewModel.swift in Sources */,
+				EE3E109A275D18AC005FB97C /* ServiceLocator.swift in Sources */,
 				EEAF532F2747DCF600A13CFA /* SwiftUIFeedViewController.swift in Sources */,
 				EE4AF6D827411E4F004E3553 /* MainTabBarController.swift in Sources */,
 				EE7B0DA227453E36009F31C1 /* NewExhibitionViewController.swift in Sources */,
