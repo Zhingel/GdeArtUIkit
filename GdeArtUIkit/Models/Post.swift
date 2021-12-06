@@ -28,3 +28,9 @@ struct Post {
 //        self.creationDate = Date(timeIntervalSince1970: secondsFrom1970)
     }
 }
+
+struct Task: Identifiable {
+    var id: String
+    var post: Post
+    var showText: Bool = false
+}

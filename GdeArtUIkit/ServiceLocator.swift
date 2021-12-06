@@ -12,4 +12,9 @@ class ServiceLocator {
     func getAuthService() -> Autorization {
         autorization
     }
+    lazy var firebaseData: FirebaseDataNew = .init()
+    func fetchData() -> FireBase {
+        firebaseData
+    }
+    
 }

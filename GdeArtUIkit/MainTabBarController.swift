@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import FirebaseAuth
 
 class MainTabBarController: UITabBarController {
     override func viewDidLoad() {

@@ -20,8 +20,8 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
 //        let vc = UIHostingController(rootView: view)
 //        return vc
 //    }()
-    
-  //  var user: User?
+    let service = ServiceLocator().fetchData()
+    var user: User?
     let contentView = UIHostingController(rootView: ProfileSwiftUIView())
     let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -42,35 +42,9 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
         super.viewDidLoad()
         guard let user = Auth.auth().currentUser else {return}
         navigationItem.title = user.displayName
-        let firebase = FirebaseData()
-        let userProfile = firebase.fetchUserWithUID(uid: user.uid) { user in
-            print("---------")
-            print("---------")
-            print("---------")
-            print("---------")
-            print(user.email)
-            print(user.profileImage)
-            let url = user.profileImage
-            guard let imageURL = URL(string: url) else {return}
-            URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
-                if let error = error {
-                    print("Error fetch image", error)
-                    return
-                }
-                guard let data = data else {return}
-                let photoImage = UIImage(data: data)
-                
-                DispatchQueue.main.async {
-                    self.plusPhotoButton.setImage(photoImage?.withRenderingMode(.alwaysOriginal), for: .normal)
-                }
-                
-            }.resume()
+        service.fetchUserWithUID(uid: user.uid) { photoImage in
+            self.plusPhotoButton.setImage(photoImage.withRenderingMode(.alwaysOriginal), for: .normal)
         }
-        
-        //???????
-        // не используется кэш если удалить аватар все вылетит
-        
-     //   plusPhotoButton.setImage(UIImage(named: "avatar")?.withRenderingMode(.alwaysOriginal), for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(logOutMethod))
         addChild(contentView)
         let hadderView = UIView()
@@ -120,16 +94,6 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
         present(alertController, animated: true)
     }
     @objc func handlePlusPhoto() {
-//        let firebase = FirebaseData()
-//        var usersCl = [User]()
-//        firebase.fetchUsers { users in
-//            DispatchQueue.main.async {
-//                usersCl.append(contentsOf: users)
-//                print(usersCl)
-//            }
-//        }
-        
-    
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Сменить фото", style: .default, handler: {_ in
             let imagePickerController = UIImagePickerController()

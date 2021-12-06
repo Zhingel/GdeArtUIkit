@@ -5,10 +5,8 @@
 //  Created by Стас Жингель on 19.11.2021.
 //
 
-import Foundation
 import UIKit
 import SwiftUI
-import FirebaseDatabase
 
 class SwiftUIFeedViewController: UIViewController {
     let contentView = UIHostingController(rootView: SwiftUIView())

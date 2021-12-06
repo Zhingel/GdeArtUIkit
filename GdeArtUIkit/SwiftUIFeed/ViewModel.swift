@@ -12,7 +12,13 @@ class art: ObservableObject {
     @Published var tasks = [Task]()
     
     init() {
+        let fetchingData = ServiceLocator().fetchData()
         fetchData()
+        fetchingData.fetchPostsData()
+        print(fetchingData.tasks)
+    
+        fetchingData.auth()
+        print(fetchingData.user)
     }
     
     func separatedStringsArray(instagram: String) -> [String] {
@@ -51,18 +57,9 @@ class art: ObservableObject {
         }
    
 }
-struct Task: Identifiable {
-    var id: String
-    var post: Post
-    var showText: Bool = false
-}
 
 
 
-extension String {
-    func deletingPrefix(_ prefix: String) -> String {
-        guard self.hasPrefix(prefix) else { return self }
-        return String(self.dropFirst(prefix.count))
-    }
-}
+
+
 

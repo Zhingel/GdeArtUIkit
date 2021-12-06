@@ -18,6 +18,8 @@ protocol Autorization {
 }
 class AutorizationFireBase: Autorization {
     
+    let currentUser = Auth.auth().currentUser
+    
     func autorizationWithEmail(loginController: UIViewController, email: String?, password: String?) {
         guard let email = email else {return}
         guard let password = password else {return}
@@ -57,22 +59,18 @@ class AutorizationFireBase: Autorization {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.signIn(with: config, presenting: loginController) {  user, error in
-            
             if let error = error {
               print(error)
               return
             }
-
             guard
               let authentication = user?.authentication,
               let idToken = authentication.idToken
             else {
               return
             }
-
             let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                            accessToken: authentication.accessToken)
-
             Auth.auth().signIn(with: credential) { authResult, error in
                 guard error == nil else { return }
                 guard let user = authResult?.user else { return }
@@ -81,8 +79,6 @@ class AutorizationFireBase: Autorization {
                    // let familyName : String = profiledata.familyName ?? ""
                     let email : String = user.email ?? ""
                  //   let userName = "\(givenName) \(familyName)"
-                
-                
                         let dictionaryValues = ["email" : email, "userName" : givenName]
                         let values = [ uid : dictionaryValues]
                         Database.database().reference().child("users").updateChildValues(values) { (err, ref) in
@@ -95,8 +91,8 @@ class AutorizationFireBase: Autorization {
                             print(email)
                             print("successfuly save user")
                             loginController.dismiss(animated: false)
-                    }
-                }
+                        }
+            }
+        }
     }
-}
 }

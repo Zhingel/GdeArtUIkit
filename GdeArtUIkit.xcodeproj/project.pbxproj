@@ -10,6 +10,7 @@
 		8A7287C575ABCF9087FDA0C8 /* Pods_GdeArtUIkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B4AC98C476ED052492C836 /* Pods_GdeArtUIkit.framework */; };
 		EE3E1098275D15C4005FB97C /* AutorizationFireBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E1097275D15C4005FB97C /* AutorizationFireBase.swift */; };
 		EE3E109A275D18AC005FB97C /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E1099275D18AC005FB97C /* ServiceLocator.swift */; };
+		EE3E109C275D28C9005FB97C /* FireBaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E109B275D28C9005FB97C /* FireBaseData.swift */; };
 		EE4AF6C427410422004E3553 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6C327410422004E3553 /* AppDelegate.swift */; };
 		EE4AF6C627410422004E3553 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6C527410422004E3553 /* SceneDelegate.swift */; };
 		EE4AF6C827410422004E3553 /* ProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6C727410422004E3553 /* ProfilePageViewController.swift */; };
@@ -45,6 +46,7 @@
 		E8816160671DD933CE9B19F3 /* Pods-GdeArtUIkit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GdeArtUIkit.release.xcconfig"; path = "Target Support Files/Pods-GdeArtUIkit/Pods-GdeArtUIkit.release.xcconfig"; sourceTree = "<group>"; };
 		EE3E1097275D15C4005FB97C /* AutorizationFireBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutorizationFireBase.swift; sourceTree = "<group>"; };
 		EE3E1099275D18AC005FB97C /* ServiceLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
+		EE3E109B275D28C9005FB97C /* FireBaseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseData.swift; sourceTree = "<group>"; };
 		EE4AF6C027410422004E3553 /* GdeArtUIkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GdeArtUIkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE4AF6C327410422004E3553 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE4AF6C527410422004E3553 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,12 +130,12 @@
 			children = (
 				EE4AF6D727411E4F004E3553 /* MainTabBarController.swift */,
 				EE3E1099275D18AC005FB97C /* ServiceLocator.swift */,
+				EE94E5AB274FAC1900C64E33 /* Firebase */,
 				EEAF532D2747DCCE00A13CFA /* SwiftUIFeed */,
 				EEAF53282747AF1E00A13CFA /* Feed */,
 				EE7B0DA027453DFA009F31C1 /* NewExhibition */,
 				EE7B0D9C27450C06009F31C1 /* Profile */,
 				EE4AF6DB2741228A004E3553 /* Login */,
-				EE94E5AB274FAC1900C64E33 /* Firebase */,
 				EE7B0D9D2745293C009F31C1 /* Models */,
 				EE4AF6DD27412B07004E3553 /* Extansions */,
 				EE4AF6DC27412315004E3553 /* System */,
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				EE94E5AC274FAC4700C64E33 /* FetchData.swift */,
+				EE3E109B275D28C9005FB97C /* FireBaseData.swift */,
 				EE3E1097275D15C4005FB97C /* AutorizationFireBase.swift */,
 			);
 			path = Firebase;
@@ -370,6 +373,7 @@
 				EE7B0DA227453E36009F31C1 /* NewExhibitionViewController.swift in Sources */,
 				EE4AF6DA2741227B004E3553 /* LoginViewController.swift in Sources */,
 				EEAF532A2747AF3600A13CFA /* FeedViewController.swift in Sources */,
+				EE3E109C275D28C9005FB97C /* FireBaseData.swift in Sources */,
 				EE4AF6C627410422004E3553 /* SceneDelegate.swift in Sources */,
 				EE94E5842749308200C64E33 /* ProfileSwiftUIView.swift in Sources */,
 				EEAF53312747DD1400A13CFA /* SwiftUIView.swift in Sources */,
