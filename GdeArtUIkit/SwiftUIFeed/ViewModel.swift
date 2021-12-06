@@ -13,8 +13,10 @@ class art: ObservableObject {
     
     init() {
         let fetchingData = ServiceLocator().fetchData()
-        fetchData()
-        fetchingData.fetchPostsData()
+  //      fetchData()
+        fetchingData.fetchPostsData { tasks in
+            self.tasks = tasks
+        }
         print(fetchingData.tasks)
     
    

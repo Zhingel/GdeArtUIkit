@@ -13,7 +13,7 @@ import FirebaseAuth
 
 protocol FireBase {
     var tasks: [Task]? {get}
-    func fetchPostsData()
+    func fetchPostsData(complition: @escaping ([Task]) -> ())
     func fetchUserWithUID(uid: String, complition: @escaping (UIImage) ->())
     func addPost(values: [String: Any], complition: @escaping () -> ())
     func uploadImageToFireStore(image: UIImage)
@@ -24,7 +24,7 @@ class FirebaseDataNew: FireBase {
 
  
     
-    func fetchPostsData() {
+    func fetchPostsData(complition: @escaping ([Task]) -> ()) {
         let ref = Database.database().reference()
         var tasks = [Task]()
         ref.child("posts").observeSingleEvent(of: .value) { snapshot in
@@ -37,7 +37,9 @@ class FirebaseDataNew: FireBase {
                 tasks.append(postWithId)
             }
             self.tasks = tasks
+            complition(tasks)
         }
+        
     }
     
     
