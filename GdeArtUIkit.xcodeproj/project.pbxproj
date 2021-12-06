@@ -30,8 +30,6 @@
 		EE94E5842749308200C64E33 /* ProfileSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE94E5832749308200C64E33 /* ProfileSwiftUIView.swift */; };
 		EE94E5862749321500C64E33 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE94E5852749321500C64E33 /* ProfileViewModel.swift */; };
 		EE94E5AA274CE0F400C64E33 /* OpenCallCreatorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE94E5A9274CE0F400C64E33 /* OpenCallCreatorsView.swift */; };
-		EEAF532A2747AF3600A13CFA /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF53292747AF3600A13CFA /* FeedViewController.swift */; };
-		EEAF532C2747B10600A13CFA /* OpenCallViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF532B2747B10600A13CFA /* OpenCallViewCell.swift */; };
 		EEAF532F2747DCF600A13CFA /* SwiftUIFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF532E2747DCF500A13CFA /* SwiftUIFeedViewController.swift */; };
 		EEAF53312747DD1400A13CFA /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF53302747DD1400A13CFA /* SwiftUIView.swift */; };
 		EEAF53332747DE9B00A13CFA /* OpenCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF53322747DE9B00A13CFA /* OpenCallView.swift */; };
@@ -67,8 +65,6 @@
 		EE94E5832749308200C64E33 /* ProfileSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSwiftUIView.swift; sourceTree = "<group>"; };
 		EE94E5852749321500C64E33 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		EE94E5A9274CE0F400C64E33 /* OpenCallCreatorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCallCreatorsView.swift; sourceTree = "<group>"; };
-		EEAF53292747AF3600A13CFA /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		EEAF532B2747B10600A13CFA /* OpenCallViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCallViewCell.swift; sourceTree = "<group>"; };
 		EEAF532E2747DCF500A13CFA /* SwiftUIFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIFeedViewController.swift; sourceTree = "<group>"; };
 		EEAF53302747DD1400A13CFA /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		EEAF53322747DE9B00A13CFA /* OpenCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCallView.swift; sourceTree = "<group>"; };
@@ -130,7 +126,6 @@
 				EE3E1099275D18AC005FB97C /* ServiceLocator.swift */,
 				EE94E5AB274FAC1900C64E33 /* Firebase */,
 				EEAF532D2747DCCE00A13CFA /* SwiftUIFeed */,
-				EEAF53282747AF1E00A13CFA /* Feed */,
 				EE7B0DA027453DFA009F31C1 /* NewExhibition */,
 				EE7B0D9C27450C06009F31C1 /* Profile */,
 				EE4AF6DB2741228A004E3553 /* Login */,
@@ -208,15 +203,6 @@
 				EE3E1097275D15C4005FB97C /* AutorizationFireBase.swift */,
 			);
 			path = Firebase;
-			sourceTree = "<group>";
-		};
-		EEAF53282747AF1E00A13CFA /* Feed */ = {
-			isa = PBXGroup;
-			children = (
-				EEAF53292747AF3600A13CFA /* FeedViewController.swift */,
-				EEAF532B2747B10600A13CFA /* OpenCallViewCell.swift */,
-			);
-			path = Feed;
 			sourceTree = "<group>";
 		};
 		EEAF532D2747DCCE00A13CFA /* SwiftUIFeed */ = {
@@ -348,7 +334,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEAF532C2747B10600A13CFA /* OpenCallViewCell.swift in Sources */,
 				EE94E582274920D700C64E33 /* CommentsView.swift in Sources */,
 				EEAF53352747DEE500A13CFA /* OpenCallProfileView.swift in Sources */,
 				EE94E5AA274CE0F400C64E33 /* OpenCallCreatorsView.swift in Sources */,
@@ -368,7 +353,6 @@
 				EE4AF6D827411E4F004E3553 /* MainTabBarController.swift in Sources */,
 				EE7B0DA227453E36009F31C1 /* NewExhibitionViewController.swift in Sources */,
 				EE4AF6DA2741227B004E3553 /* LoginViewController.swift in Sources */,
-				EEAF532A2747AF3600A13CFA /* FeedViewController.swift in Sources */,
 				EE3E109C275D28C9005FB97C /* FireBaseData.swift in Sources */,
 				EE4AF6C627410422004E3553 /* SceneDelegate.swift in Sources */,
 				EE94E5842749308200C64E33 /* ProfileSwiftUIView.swift in Sources */,
