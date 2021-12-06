@@ -6,11 +6,7 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseAuth
-import FirebaseDatabase
-import FirebaseStorage
-import GoogleSignIn
+
 
 class LoginViewController: UIViewController {
     let authorization = ServiceLocator().getAuthService()

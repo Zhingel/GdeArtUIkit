@@ -65,3 +65,7 @@ extension String {
         return String(self.dropFirst(prefix.count))
     }
 }
+
+extension NSNotification {
+    static let newPost = Notification.Name.init("new_post")
+}

@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 import FirebaseAuth
-import FirebaseDatabase
 
 class NewExhibitionViewController: UIViewController {
+    let service = ServiceLocator().fetchData()
     var post: Post?
     let exhibitionNameLabel: UILabel = {
         let label = UILabel()
@@ -122,21 +122,9 @@ class NewExhibitionViewController: UIViewController {
         guard let description = descriptionTextView.text else {return}
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let values = ["curators" : curators, "openCall" : openCall, "instagram" : instagram, "description" : description, "userUid": uid, "creationDate" : Date().timeIntervalSince1970, "deadLine" : deadline] as [String : Any]
-        Database.database().reference().child("posts").childByAutoId().updateChildValues(values) { (err, ref) in
-            if let err = err {
-                print("Failed", err)
-                return
-            }
-            print("Successfuly save to db")
-            NotificationCenter.default.post(name: NSNotification.newPost,
-                                            object: nil,
-                                            userInfo: nil)
-            self.dismiss(animated: true)
-        }
+        service.addPost(values: values) {self.dismiss(animated: true)}
         
     }
 }
 
-extension NSNotification {
-    static let newPost = Notification.Name.init("new_post")
-}
+

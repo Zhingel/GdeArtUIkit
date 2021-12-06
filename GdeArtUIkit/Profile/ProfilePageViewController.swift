@@ -8,8 +8,6 @@
 import UIKit
 import FirebaseAuth
 import SwiftUI
-import FirebaseStorage
-import FirebaseDatabase
 
 class ProfilePageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 //    lazy var contentView: UIHostingController<ProfileSwiftUIView> = {
@@ -116,40 +114,8 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
 //        plusPhotoButton.layer.borderColor = UIColor.black.cgColor
 //        plusPhotoButton.layer.borderWidth = 1
         guard let image = self.plusPhotoButton.imageView?.image else {return}
-        guard let uploadData = image.jpegData(compressionQuality: 0.3) else {return}
-        let fileName = UUID().uuidString
-        let storageRef = Storage.storage().reference().child("profile_images").child(fileName)
-        storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
-            if error != nil {
-                print("failed to upload data")
-                return
-            }
-            storageRef.downloadURL(completion: { (url, error) in
-                    if error != nil {
-                        print(error!.localizedDescription)
-                        return
-                    }
-                    if let profileImageUrl = url?.absoluteString {
-                        print("Success")
-                        guard let user = Auth.auth().currentUser else {return}
-                        let uid = user.uid
-                        
-                        let dictionaryValues = ["profileImageUrl" : profileImageUrl]
-                        Database.database().reference().child("users").child(uid).updateChildValues(dictionaryValues) { (err, ref) in
-                            if let err = err {
-                                print("error to safe user info in database", err)
-                                return
-                            }
-                            print("successfuly save user")
-                           
-                        }
-                    }
-                })
-            
-        }
+        service.uploadImageToFireStore(image: image)
         dismiss(animated: true, completion: nil)
-        
-        
     }
 }
 

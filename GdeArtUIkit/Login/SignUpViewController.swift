@@ -6,8 +6,7 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
+
 
 class SignUpViewController: UIViewController {
     let registration = ServiceLocator().getAuthService()
