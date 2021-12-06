@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 import SwiftUI
 
 class ProfilePageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
@@ -38,8 +37,9 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let user = Auth.auth().currentUser else {return}
+        guard let user = AutorizationFireBase.auth.currentUser else {return}
         navigationItem.title = user.displayName
+        
         service.fetchUserWithUID(uid: user.uid) { photoImage in
             self.plusPhotoButton.setImage(photoImage.withRenderingMode(.alwaysOriginal), for: .normal)
         }
@@ -58,7 +58,7 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
     }
     override func viewWillAppear(_ animated: Bool) {
 
-            if Auth.auth().currentUser == nil {
+        if AutorizationFireBase.auth.currentUser == nil {
                 let loginViewController = LoginViewController()
                 let navController = UINavigationController(rootViewController: loginViewController)
                 navController.modalPresentationStyle = .currentContext
@@ -79,7 +79,7 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: {_ in
             do {
-                try Auth.auth().signOut()
+                try AutorizationFireBase.auth.signOut()
                 let loginController = LoginViewController()
                 let navController = UINavigationController(rootViewController: loginController)
                 navController.modalPresentationStyle = .currentContext

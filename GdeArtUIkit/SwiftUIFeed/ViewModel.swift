@@ -17,8 +17,7 @@ class art: ObservableObject {
         fetchingData.fetchPostsData()
         print(fetchingData.tasks)
     
-        fetchingData.auth()
-        print(fetchingData.user)
+   
     }
     
     func separatedStringsArray(instagram: String) -> [String] {

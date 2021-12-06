@@ -7,10 +7,10 @@
 
 import SwiftUI
 import UIKit
-import FirebaseAuth
+
 
 struct ProfileSwiftUIView: View {
-    let user = Auth.auth().currentUser
+    let user = AutorizationFireBase.auth.currentUser
     @State var changeFoto = false
     @ObservedObject var model = art()
     var loginMenuHandler: (() -> Void)?
@@ -67,7 +67,7 @@ struct ProfileSwiftUIView: View {
             Divider()
             ScrollView(showsIndicators: false) {
                 ForEach (model.tasks) { task in
-                    if task.post.userUid == Auth.auth().currentUser?.uid {
+                    if task.post.userUid == user?.uid {
                         OpenCallCreatorsView(task: task)
                     }
                 }

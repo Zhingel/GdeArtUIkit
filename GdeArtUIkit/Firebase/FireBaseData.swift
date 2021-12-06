@@ -14,8 +14,6 @@ import FirebaseAuth
 protocol FireBase {
     var tasks: [Task]? {get}
     func fetchPostsData()
-    var user: String? {get}
-    func auth()
     func fetchUserWithUID(uid: String, complition: @escaping (UIImage) ->())
     func addPost(values: [String: Any], complition: @escaping () -> ())
     func uploadImageToFireStore(image: UIImage)
@@ -23,11 +21,8 @@ protocol FireBase {
 
 class FirebaseDataNew: FireBase {
     var tasks: [Task]?
-    var user: String?
 
-    func auth() {
-        user = "123"
-    }
+ 
     
     func fetchPostsData() {
         let ref = Database.database().reference()

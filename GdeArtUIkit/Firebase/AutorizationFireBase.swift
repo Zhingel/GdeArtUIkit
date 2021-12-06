@@ -18,7 +18,7 @@ protocol Autorization {
 }
 class AutorizationFireBase: Autorization {
     
-    let currentUser = Auth.auth().currentUser
+    static let auth = Auth.auth()
     
     func autorizationWithEmail(loginController: UIViewController, email: String?, password: String?) {
         guard let email = email else {return}

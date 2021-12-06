@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import FirebaseAuth
+
 
 class NewExhibitionViewController: UIViewController {
     let service = ServiceLocator().fetchData()
@@ -120,7 +120,7 @@ class NewExhibitionViewController: UIViewController {
         guard let openCall = openCallNameTextField.exhibitionNameTextField.text else {return}
         guard let instagram = instagramProfileTextField.exhibitionNameTextField.text else {return}
         guard let description = descriptionTextView.text else {return}
-        guard let uid = Auth.auth().currentUser?.uid else {return}
+        guard let uid = AutorizationFireBase.auth.currentUser?.uid else {return}
         let values = ["curators" : curators, "openCall" : openCall, "instagram" : instagram, "description" : description, "userUid": uid, "creationDate" : Date().timeIntervalSince1970, "deadLine" : deadline] as [String : Any]
         service.addPost(values: values) {self.dismiss(animated: true)}
         
