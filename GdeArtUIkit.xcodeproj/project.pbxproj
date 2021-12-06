@@ -30,7 +30,6 @@
 		EE94E5842749308200C64E33 /* ProfileSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE94E5832749308200C64E33 /* ProfileSwiftUIView.swift */; };
 		EE94E5862749321500C64E33 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE94E5852749321500C64E33 /* ProfileViewModel.swift */; };
 		EE94E5AA274CE0F400C64E33 /* OpenCallCreatorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE94E5A9274CE0F400C64E33 /* OpenCallCreatorsView.swift */; };
-		EE94E5AD274FAC4800C64E33 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE94E5AC274FAC4700C64E33 /* FetchData.swift */; };
 		EEAF532A2747AF3600A13CFA /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF53292747AF3600A13CFA /* FeedViewController.swift */; };
 		EEAF532C2747B10600A13CFA /* OpenCallViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF532B2747B10600A13CFA /* OpenCallViewCell.swift */; };
 		EEAF532F2747DCF600A13CFA /* SwiftUIFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAF532E2747DCF500A13CFA /* SwiftUIFeedViewController.swift */; };
@@ -68,7 +67,6 @@
 		EE94E5832749308200C64E33 /* ProfileSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSwiftUIView.swift; sourceTree = "<group>"; };
 		EE94E5852749321500C64E33 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		EE94E5A9274CE0F400C64E33 /* OpenCallCreatorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCallCreatorsView.swift; sourceTree = "<group>"; };
-		EE94E5AC274FAC4700C64E33 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
 		EEAF53292747AF3600A13CFA /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		EEAF532B2747B10600A13CFA /* OpenCallViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCallViewCell.swift; sourceTree = "<group>"; };
 		EEAF532E2747DCF500A13CFA /* SwiftUIFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIFeedViewController.swift; sourceTree = "<group>"; };
@@ -206,7 +204,6 @@
 		EE94E5AB274FAC1900C64E33 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				EE94E5AC274FAC4700C64E33 /* FetchData.swift */,
 				EE3E109B275D28C9005FB97C /* FireBaseData.swift */,
 				EE3E1097275D15C4005FB97C /* AutorizationFireBase.swift */,
 			);
@@ -364,7 +361,6 @@
 				EE4AF6DF27412B22004E3553 /* Extensions.swift in Sources */,
 				EEAF53332747DE9B00A13CFA /* OpenCallView.swift in Sources */,
 				EE4AF6C427410422004E3553 /* AppDelegate.swift in Sources */,
-				EE94E5AD274FAC4800C64E33 /* FetchData.swift in Sources */,
 				EE7B0D9F27452953009F31C1 /* User.swift in Sources */,
 				EEAF53372747DF2900A13CFA /* ViewModel.swift in Sources */,
 				EE3E109A275D18AC005FB97C /* ServiceLocator.swift in Sources */,
