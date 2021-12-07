@@ -16,5 +16,4 @@ class ServiceLocator {
     func fetchData() -> FireBase {
         firebaseData
     }
-    
 }

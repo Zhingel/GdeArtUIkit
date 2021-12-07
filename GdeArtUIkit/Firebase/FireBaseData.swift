@@ -10,34 +10,35 @@ import Firebase
 import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
+import SwiftUI
 
 protocol FireBase {
-    var tasks: [Task]? {get}
-    func fetchPostsData(complition: @escaping ([Task]) -> ())
+    var tasks: [Task] {get}
+    func fetchPostsData()
     func fetchUserWithUID(uid: String, complition: @escaping (UIImage) ->())
     func addPost(values: [String: Any], complition: @escaping () -> ())
     func uploadImageToFireStore(image: UIImage)
 }
 
-class FirebaseDataNew: FireBase {
-    var tasks: [Task]?
+class FirebaseDataNew: FireBase, ObservableObject {
+    @Published var tasks = [Task]()
 
  
     
-    func fetchPostsData(complition: @escaping ([Task]) -> ()) {
+    func fetchPostsData() {
         let ref = Database.database().reference()
         var tasks = [Task]()
         ref.child("posts").observeSingleEvent(of: .value) { snapshot in
             guard let dictionaries = snapshot.value as? [String: Any] else {return}
             dictionaries.forEach { key, value in
                 guard let dictionary = value as? [String: Any] else {return}
-                print(dictionary)
                 let post = Post(dictionary: dictionary)
                 let postWithId = Task(id: key, post: post, showText: false)
                 tasks.append(postWithId)
             }
             self.tasks = tasks
-            complition(tasks)
+            print(tasks)
+            
         }
         
     }
@@ -83,10 +84,11 @@ class FirebaseDataNew: FireBase {
                 return
             }
             print("Successfuly save to db")
-            NotificationCenter.default.post(name: NSNotification.newPost,
-                                            object: nil,
-                                            userInfo: nil)
-//            self.dismiss(animated: true)
+//            NotificationCenter.default.post(name: NSNotification.newPost,
+//                                            object: nil,
+//                                            userInfo: nil)
+            self.tasks.removeAll()
+            self.fetchPostsData()
             complition()
         }
     }

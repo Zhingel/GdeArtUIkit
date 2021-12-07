@@ -11,16 +11,14 @@ import SwiftUI
 class art: ObservableObject {
     @Published var tasks = [Task]()
     
-    init() {
-        let fetchingData = ServiceLocator().fetchData()
-  //      fetchData()
-        fetchingData.fetchPostsData { tasks in
-            self.tasks = tasks
-        }
-        print(fetchingData.tasks)
-    
-   
-    }
+//    init() {
+//   //     let fetchingData = ServiceLocator().fetchData()
+//  //      fetchData()
+//     
+////        print(fetchingData.tasks)
+//    
+//   
+//    }
     
     func separatedStringsArray(instagram: String) -> [String] {
         let username = instagram.replacingOccurrences(of: "@", with: "")

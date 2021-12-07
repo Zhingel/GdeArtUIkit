@@ -12,37 +12,11 @@ import UIKit
 struct ProfileSwiftUIView: View {
     let user = AutorizationFireBase.auth.currentUser
     @State var changeFoto = false
-    @ObservedObject var model = art()
+    @ObservedObject var model = FirebaseDataNew()
+    @EnvironmentObject var haha: FirebaseDataNew
     var loginMenuHandler: (() -> Void)?
     var body: some View {
         VStack {
-//            HStack {
-//                Button {
-//                    changeFoto.toggle()
-//                } label: {
-//                    Image("avatar")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fill)
-//                        .frame(width: 70, height: 70)
-//                        .clipShape(Circle())
-//                        .padding(5)
-//                        .background(Color.white)
-//                        .clipShape(Circle())
-//                }
-//                Spacer()
-//                Button {
-//                   loginMenuHandler?()
-//                } label: {
-//                    Text("Add Open Call")
-//                        .padding(.vertical, 5)
-//                        .padding(.horizontal)
-//                        .background(
-//                            Capsule()
-//                                .stroke(lineWidth: 1.5)
-//                        )
-//                }
-//            }
-//            .padding([.leading, .trailing])
             Divider()
             HStack(spacing: 40) {
                 Button {
@@ -73,9 +47,14 @@ struct ProfileSwiftUIView: View {
                 }
                 
             }
-            .onReceive(NotificationCenter.default.publisher(for: NSNotification.newPost)) { _ in
-                self.model.fetchData()
-            }
+            .onAppear(perform: {
+                if model.tasks.isEmpty {
+                    self.model.fetchPostsData()
+                }
+            })
+//            .onReceive(NotificationCenter.default.publisher(for: NSNotification.newPost)) { _ in
+//                self.model.fetchData()
+//            }
         }
         .actionSheet(isPresented: $changeFoto) {
             ActionSheet(title: Text("Сменить фото"), buttons: [
