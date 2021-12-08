@@ -39,10 +39,6 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
         super.viewDidLoad()
         guard let user = AutorizationFireBase.auth.currentUser else {return}
         navigationItem.title = user.displayName
-        
-        service.fetchImageUserWithUID(uid: user.uid) { photoImage in
-            self.plusPhotoButton.setImage(photoImage.withRenderingMode(.alwaysOriginal), for: .normal)
-        }
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(logOutMethod))
         addChild(contentView)
         let hadderView = UIView()
@@ -56,13 +52,9 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
         view.addSubview(contentView.view)
         contentView.view.constraints(top: hadderView.bottomAnchor, bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 0, paddingBottom: 0, paddingleft: 0, paddingRight: 0, width: 0, height: 0)
         service.fetchUserWithUID(uid: user.uid) { user in
-            print("************")
-            print("************")
-            print("************")
-            print(user)
-            print("************")
-            print("************")
-            print("************")
+            self.service.fetchImageWithURL(urlString: user.profileImage) { photoImage in
+                self.plusPhotoButton.setImage(photoImage.withRenderingMode(.alwaysOriginal), for: .normal)
+            }
         }
     }
     override func viewWillAppear(_ animated: Bool) {

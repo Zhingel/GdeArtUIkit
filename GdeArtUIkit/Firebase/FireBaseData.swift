@@ -15,10 +15,10 @@ import SwiftUI
 protocol FireBase {
     var tasks: [Task] {get}
     func fetchPostsData()
-    func fetchImageUserWithUID(uid: String, complition: @escaping (UIImage) ->())
     func fetchUserWithUID(uid: String, complition: @escaping (User) -> ())
     func addPost(values: [String: Any], complition: @escaping () -> ())
-    func uploadImageToFireStore(uid: String, image: UIImage) 
+    func uploadImageToFireStore(uid: String, image: UIImage)
+    func fetchImageWithURL(urlString: String, complition: @escaping (UIImage) ->())
 }
 
 class FirebaseDataNew: FireBase, ObservableObject {
@@ -44,26 +44,7 @@ class FirebaseDataNew: FireBase, ObservableObject {
         
     }
     
-    
-    func fetchImageUserWithUID(uid: String, complition: @escaping (UIImage) ->()) {
-        fetchUserWithUID(uid: uid) { user in
-            let url = user.profileImage
-            guard let imageURL = URL(string: url) else {return}
-            URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
-                if let error = error {
-                    print("Error fetch image", error)
-                    return
-                }
-                guard let data = data else {return}
-                guard let photoImage = UIImage(data: data) else {return}
 
-                DispatchQueue.main.async {
-                    complition(photoImage)
-                }
-
-            }.resume()
-        }
-    }
     
     func addPost(values: [String: Any], complition: @escaping () -> ()) {
         Database.database().reference().child("posts").childByAutoId().updateChildValues(values) { (err, ref) in
@@ -134,5 +115,21 @@ class FirebaseDataNew: FireBase, ObservableObject {
         } withCancel: { err in
             print(err)
         }
+    }
+    func fetchImageWithURL(urlString: String, complition: @escaping (UIImage) ->()) {
+        guard let imageURL = URL(string: urlString) else {return}
+        URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
+            if let error = error {
+                print("Error fetch image", error)
+                return
+            }
+            guard let data = data else {return}
+            guard let photoImage = UIImage(data: data) else {return}
+
+            DispatchQueue.main.async {
+                complition(photoImage)
+            }
+
+        }.resume()
     }
 }
