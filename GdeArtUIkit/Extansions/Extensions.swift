@@ -69,3 +69,4 @@ extension String {
 extension NSNotification {
     static let newPost = Notification.Name.init("new_post")
 }
+

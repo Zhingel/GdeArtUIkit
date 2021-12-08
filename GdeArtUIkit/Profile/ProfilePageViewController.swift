@@ -38,6 +38,7 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let user = AutorizationFireBase.auth.currentUser else {return}
+        print("KKKKKKKKK", user.uid)
         navigationItem.title = user.displayName
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(logOutMethod))
         addChild(contentView)

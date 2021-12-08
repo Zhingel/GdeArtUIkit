@@ -8,6 +8,7 @@
 import SwiftUI
 struct taskCard: View {
     @State var task : Task
+    let service = ServiceLocator().fetchData()
      var body: some View {
         VStack {
             VStack(alignment: .leading) {
@@ -63,9 +64,15 @@ struct taskCard: View {
                         .opacity(0.7)
                 }
                 Button {
-                    //
+                    print(task.post)
+                    task.savedCall.toggle()
+                    service.savedToFavorites(hasSaved: task.savedCall, postId: task.post.uid)
+                    
                 } label: {
-                    Image("ribbon")
+                    Image(task.savedCall ? "ribbon2" : "ribbon")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30, height: 30)
                 }
             }
             .padding(.horizontal)

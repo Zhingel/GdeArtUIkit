@@ -121,8 +121,9 @@ class NewExhibitionViewController: UIViewController {
         guard let instagram = instagramProfileTextField.exhibitionNameTextField.text else {return}
         guard let description = descriptionTextView.text else {return}
         guard let uid = AutorizationFireBase.auth.currentUser?.uid else {return}
-        let values = ["curators" : curators, "openCall" : openCall, "instagram" : instagram, "description" : description, "userUid": uid, "creationDate" : Date().timeIntervalSince1970, "deadLine" : deadline] as [String : Any]
-        service.addPost(values: values) {self.dismiss(animated: true)}
+        let postId = UUID().uuidString
+        let values = ["uid" : postId, "curators" : curators, "openCall" : openCall, "instagram" : instagram, "description" : description, "userUid": uid, "creationDate" : Date().timeIntervalSince1970, "deadLine" : deadline] as [String : Any]
+        service.addPost(values: values, postId: postId) {self.dismiss(animated: true)}
         
     }
 }

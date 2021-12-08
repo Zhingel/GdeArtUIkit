@@ -16,9 +16,10 @@ protocol FireBase {
     var tasks: [Task] {get}
     func fetchPostsData()
     func fetchUserWithUID(uid: String, complition: @escaping (User) -> ())
-    func addPost(values: [String: Any], complition: @escaping () -> ())
+    func addPost(values: [String: Any], postId: String, complition: @escaping () -> ())
     func uploadImageToFireStore(uid: String, image: UIImage)
     func fetchImageWithURL(urlString: String, complition: @escaping (UIImage) ->())
+    func savedToFavorites(hasSaved: Bool, postId: String)
 }
 
 class FirebaseDataNew: FireBase, ObservableObject {
@@ -28,26 +29,35 @@ class FirebaseDataNew: FireBase, ObservableObject {
     
     func fetchPostsData() {
         let ref = Database.database().reference()
-        var tasks = [Task]()
         ref.child("posts").observeSingleEvent(of: .value) { snapshot in
             guard let dictionaries = snapshot.value as? [String: Any] else {return}
             dictionaries.forEach { key, value in
                 guard let dictionary = value as? [String: Any] else {return}
                 let post = Post(dictionary: dictionary)
-                let postWithId = Task(id: key, post: post, showText: false)
-                tasks.append(postWithId)
+                var postWithId = Task(id: key, post: post, showText: false)
+                guard let userUID = AutorizationFireBase.auth.currentUser?.uid else {return}
+                Database.database().reference().child("likes").child(userUID).child(key).observeSingleEvent(of: .value) { snapshot in
+                    print(snapshot.value)
+                    if let value = snapshot.value as? Int, value == 1 {
+                        print("1111")
+                        postWithId.savedCall = true
+                    } else {
+                        print("222")
+                        postWithId.savedCall = false
+                    }
+                    print(postWithId)
+                    self.tasks.append(postWithId)
+                }
+                
             }
-            self.tasks = tasks
-            print(tasks)
-            
         }
         
     }
     
 
     
-    func addPost(values: [String: Any], complition: @escaping () -> ()) {
-        Database.database().reference().child("posts").childByAutoId().updateChildValues(values) { (err, ref) in
+    func addPost(values: [String: Any], postId: String, complition: @escaping () -> ()) {
+        Database.database().reference().child("posts").child(postId).updateChildValues(values) { (err, ref) in
             if let err = err {
                 print("Failed", err)
                 return
@@ -132,4 +142,10 @@ class FirebaseDataNew: FireBase, ObservableObject {
 
         }.resume()
     }
+    func savedToFavorites(hasSaved: Bool, postId: String) {
+        guard let uid = AutorizationFireBase.auth.currentUser?.uid else {return}
+        let values = [postId : hasSaved == true ? 1 : 0]
+        Database.database().reference().child("likes").child(uid).updateChildValues(values)
+    }
 }
+
