@@ -15,9 +15,10 @@ import SwiftUI
 protocol FireBase {
     var tasks: [Task] {get}
     func fetchPostsData()
-    func fetchUserWithUID(uid: String, complition: @escaping (UIImage) ->())
+    func fetchImageUserWithUID(uid: String, complition: @escaping (UIImage) ->())
+    func fetchUserWithUID(uid: String, complition: @escaping (User) -> ())
     func addPost(values: [String: Any], complition: @escaping () -> ())
-    func uploadImageToFireStore(image: UIImage)
+    func uploadImageToFireStore(uid: String, image: UIImage) 
 }
 
 class FirebaseDataNew: FireBase, ObservableObject {
@@ -44,18 +45,9 @@ class FirebaseDataNew: FireBase, ObservableObject {
     }
     
     
-    func fetchUserWithUID(uid: String, complition: @escaping (UIImage) ->()) {
-        print("with user", uid)
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { snapshot in
-            guard let userDictionary = snapshot.value as? [String: Any] else {return}
-            let user = User(uid: uid, dictionary: userDictionary)
-                print("---------")
-                print("---------")
-                print("---------")
-                print("---------")
-                print(user.email)
-                print(user.profileImage)
-                let url = user.profileImage
+    func fetchImageUserWithUID(uid: String, complition: @escaping (UIImage) ->()) {
+        fetchUserWithUID(uid: uid) { user in
+            let url = user.profileImage
             guard let imageURL = URL(string: url) else {return}
             URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
                 if let error = error {
@@ -70,11 +62,7 @@ class FirebaseDataNew: FireBase, ObservableObject {
                 }
 
             }.resume()
-          
-        } withCancel: { err in
-            print(err)
         }
-           
     }
     
     func addPost(values: [String: Any], complition: @escaping () -> ()) {
@@ -93,10 +81,10 @@ class FirebaseDataNew: FireBase, ObservableObject {
         }
     }
     
-    func uploadImageToFireStore(image: UIImage) {
+    func uploadImageToFireStore(uid: String, image: UIImage) {
         guard let uploadData = image.jpegData(compressionQuality: 0.3) else {return}
-        let fileName = UUID().uuidString
-        let storageRef = Storage.storage().reference().child("profile_images").child(fileName)
+        let fileName = "profileImageUID_" + uid
+        let storageRef = Storage.storage().reference().child("profile_images").child(uid).child(fileName)
         storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
             if error != nil {
                 print("failed to upload data")
@@ -123,7 +111,28 @@ class FirebaseDataNew: FireBase, ObservableObject {
                         }
                     }
                 })
-            
+        }
+    }
+    func deleteImageFromFireStore(imageName: String) {
+//        // Create a reference to the file to delete
+//        let storageRef = Storage.storage().reference().child("profile_images").
+//
+//        // Delete the file
+//        desertRef.delete { error in
+//          if let error = error {
+//            // Uh-oh, an error occurred!
+//          } else {
+//            // File deleted successfully
+//          }
+//        }
+    }
+    func fetchUserWithUID(uid: String, complition: @escaping (User) -> ()) {
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { snapshot in
+            guard let userDictionary = snapshot.value as? [String: Any] else {return}
+            let user = User(uid: uid, dictionary: userDictionary)
+            complition(user)
+        } withCancel: { err in
+            print(err)
         }
     }
 }

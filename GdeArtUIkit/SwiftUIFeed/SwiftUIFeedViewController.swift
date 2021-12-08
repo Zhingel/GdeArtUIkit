@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 
 class SwiftUIFeedViewController: UIViewController {
+    var tasks: String = ""
     let contentView = UIHostingController(rootView: SwiftUIView())
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -40,7 +40,7 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
         guard let user = AutorizationFireBase.auth.currentUser else {return}
         navigationItem.title = user.displayName
         
-        service.fetchUserWithUID(uid: user.uid) { photoImage in
+        service.fetchImageUserWithUID(uid: user.uid) { photoImage in
             self.plusPhotoButton.setImage(photoImage.withRenderingMode(.alwaysOriginal), for: .normal)
         }
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(logOutMethod))
@@ -55,6 +55,15 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
         hadderView.constraints(top: view.topAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 0, paddingBottom: 0, paddingleft: 0, paddingRight: 0, width: 0, height: 180)
         view.addSubview(contentView.view)
         contentView.view.constraints(top: hadderView.bottomAnchor, bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 0, paddingBottom: 0, paddingleft: 0, paddingRight: 0, width: 0, height: 0)
+        service.fetchUserWithUID(uid: user.uid) { user in
+            print("************")
+            print("************")
+            print("************")
+            print(user)
+            print("************")
+            print("************")
+            print("************")
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
 
@@ -109,12 +118,13 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
         else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerOriginalImage")] as? UIImage {
             plusPhotoButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
         }
+        guard let user = AutorizationFireBase.auth.currentUser else {return}
         plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width/2
         plusPhotoButton.layer.masksToBounds = true
 //        plusPhotoButton.layer.borderColor = UIColor.black.cgColor
 //        plusPhotoButton.layer.borderWidth = 1
         guard let image = self.plusPhotoButton.imageView?.image else {return}
-        service.uploadImageToFireStore(image: image)
+        service.uploadImageToFireStore(uid: user.uid, image: image)
         dismiss(animated: true, completion: nil)
     }
 }
