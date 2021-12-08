@@ -17,7 +17,7 @@ struct OpenCallCreatorsView: View {
             
             VStack(alignment: .leading) {
                 NavigationLink(
-                    destination: pageView(task: task),
+                    destination: PageView(task: task),
                     label: {
                         HStack {
                             Image("1")

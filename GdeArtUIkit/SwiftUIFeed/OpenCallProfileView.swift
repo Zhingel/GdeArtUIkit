@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct pageView: View {
+struct PageView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var model = art()
     @State var task : Task

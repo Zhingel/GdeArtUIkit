@@ -11,6 +11,10 @@
 		EE3E1098275D15C4005FB97C /* AutorizationFireBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E1097275D15C4005FB97C /* AutorizationFireBase.swift */; };
 		EE3E109A275D18AC005FB97C /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E1099275D18AC005FB97C /* ServiceLocator.swift */; };
 		EE3E109C275D28C9005FB97C /* FireBaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E109B275D28C9005FB97C /* FireBaseData.swift */; };
+		EE3E109E276124CF005FB97C /* OffSetTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E109D276124CF005FB97C /* OffSetTabView.swift */; };
+		EE3E10A027612507005FB97C /* PagerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E109F27612507005FB97C /* PagerHelper.swift */; };
+		EE3E10A227612557005FB97C /* UpperTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E10A127612557005FB97C /* UpperTabBar.swift */; };
+		EE3E10A4276127A7005FB97C /* MyCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E10A3276127A7005FB97C /* MyCalls.swift */; };
 		EE4AF6C427410422004E3553 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6C327410422004E3553 /* AppDelegate.swift */; };
 		EE4AF6C627410422004E3553 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6C527410422004E3553 /* SceneDelegate.swift */; };
 		EE4AF6C827410422004E3553 /* ProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6C727410422004E3553 /* ProfilePageViewController.swift */; };
@@ -43,6 +47,10 @@
 		EE3E1097275D15C4005FB97C /* AutorizationFireBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutorizationFireBase.swift; sourceTree = "<group>"; };
 		EE3E1099275D18AC005FB97C /* ServiceLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
 		EE3E109B275D28C9005FB97C /* FireBaseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseData.swift; sourceTree = "<group>"; };
+		EE3E109D276124CF005FB97C /* OffSetTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffSetTabView.swift; sourceTree = "<group>"; };
+		EE3E109F27612507005FB97C /* PagerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerHelper.swift; sourceTree = "<group>"; };
+		EE3E10A127612557005FB97C /* UpperTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpperTabBar.swift; sourceTree = "<group>"; };
+		EE3E10A3276127A7005FB97C /* MyCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalls.swift; sourceTree = "<group>"; };
 		EE4AF6C027410422004E3553 /* GdeArtUIkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GdeArtUIkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE4AF6C327410422004E3553 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE4AF6C527410422004E3553 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				EE4AF6DE27412B22004E3553 /* Extensions.swift */,
+				EE3E109D276124CF005FB97C /* OffSetTabView.swift */,
+				EE3E109F27612507005FB97C /* PagerHelper.swift */,
 			);
 			path = Extansions;
 			sourceTree = "<group>";
@@ -170,6 +180,8 @@
 			children = (
 				EE4AF6C727410422004E3553 /* ProfilePageViewController.swift */,
 				EE94E5832749308200C64E33 /* ProfileSwiftUIView.swift */,
+				EE3E10A127612557005FB97C /* UpperTabBar.swift */,
+				EE3E10A3276127A7005FB97C /* MyCalls.swift */,
 				EE94E5A9274CE0F400C64E33 /* OpenCallCreatorsView.swift */,
 			);
 			path = Profile;
@@ -332,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE94E582274920D700C64E33 /* CommentsView.swift in Sources */,
+				EE3E10A227612557005FB97C /* UpperTabBar.swift in Sources */,
 				EEAF53352747DEE500A13CFA /* OpenCallProfileView.swift in Sources */,
 				EE94E5AA274CE0F400C64E33 /* OpenCallCreatorsView.swift in Sources */,
 				EE4AF6C827410422004E3553 /* ProfilePageViewController.swift in Sources */,
@@ -341,6 +354,7 @@
 				EE7B0DA4274549B2009F31C1 /* TextFieldView.swift in Sources */,
 				EE4AF6DF27412B22004E3553 /* Extensions.swift in Sources */,
 				EEAF53332747DE9B00A13CFA /* OpenCallView.swift in Sources */,
+				EE3E109E276124CF005FB97C /* OffSetTabView.swift in Sources */,
 				EE4AF6C427410422004E3553 /* AppDelegate.swift in Sources */,
 				EE7B0D9F27452953009F31C1 /* User.swift in Sources */,
 				EEAF53372747DF2900A13CFA /* ViewModel.swift in Sources */,
@@ -348,7 +362,9 @@
 				EEAF532F2747DCF600A13CFA /* SwiftUIFeedViewController.swift in Sources */,
 				EE4AF6D827411E4F004E3553 /* MainTabBarController.swift in Sources */,
 				EE7B0DA227453E36009F31C1 /* NewExhibitionViewController.swift in Sources */,
+				EE3E10A4276127A7005FB97C /* MyCalls.swift in Sources */,
 				EE4AF6DA2741227B004E3553 /* LoginViewController.swift in Sources */,
+				EE3E10A027612507005FB97C /* PagerHelper.swift in Sources */,
 				EE3E109C275D28C9005FB97C /* FireBaseData.swift in Sources */,
 				EE4AF6C627410422004E3553 /* SceneDelegate.swift in Sources */,
 				EE94E5842749308200C64E33 /* ProfileSwiftUIView.swift in Sources */,
