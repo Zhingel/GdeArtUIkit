@@ -12,7 +12,7 @@ import UIKit
 struct ProfileSwiftUIView: View {
     let user = AutorizationFireBase.auth.currentUser
     @ObservedObject var model = FirebaseDataNew()
-    @EnvironmentObject var haha: FirebaseDataNew
+   // @EnvironmentObject var haha: FirebaseDataNew
     var loginMenuHandler: (() -> Void)?
     var body: some View {
         UpperTabBar(userUid: user?.uid ?? "", tasks: model.tasks)

@@ -51,6 +51,9 @@ struct taskCard: View {
                 NavigationLink {
                     CommentsView(task: task)
                         .navigationTitle(task.post.openCallName)
+                        .onAppear {
+                            service.fetchComments(postId: task.post.uid)
+                        }
                 } label: {
                     Image("comment")
                 }

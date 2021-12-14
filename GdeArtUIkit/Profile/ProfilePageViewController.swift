@@ -23,6 +23,8 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
     let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
+        button.layer.cornerRadius = button.frame.width/2
+        button.layer.masksToBounds = true
         return button
     }()
     let addOpenCallButton: UIButton = {
@@ -67,7 +69,6 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
                 navController.navigationBar.scrollEdgeAppearance = navController.navigationBar.standardAppearance
                 self.present(navController, animated: true)
             }
-        
     }
 
     
@@ -112,10 +113,6 @@ class ProfilePageViewController: UIViewController, UIImagePickerControllerDelega
             plusPhotoButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
         }
         guard let user = AutorizationFireBase.auth.currentUser else {return}
-        plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width/2
-        plusPhotoButton.layer.masksToBounds = true
-//        plusPhotoButton.layer.borderColor = UIColor.black.cgColor
-//        plusPhotoButton.layer.borderWidth = 1
         guard let image = self.plusPhotoButton.imageView?.image else {return}
         service.uploadImageToFireStore(uid: user.uid, image: image)
         dismiss(animated: true, completion: nil)

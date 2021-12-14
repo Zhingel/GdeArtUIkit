@@ -15,6 +15,8 @@ import SwiftUI
 protocol FireBase {
     var tasks: [Task] {get}
     func fetchPostsData()
+    func fetchComments(postId: String)
+    func addCommentFunc(commentTextDelegate: String, postId: String)
     func fetchUserWithUID(uid: String, complition: @escaping (User) -> ())
     func addPost(values: [String: Any], postId: String, complition: @escaping () -> ())
     func uploadImageToFireStore(uid: String, image: UIImage)
@@ -22,10 +24,21 @@ protocol FireBase {
     func savedToFavorites(hasSaved: Bool, postId: String)
 }
 
-class FirebaseDataNew: FireBase, ObservableObject {
+class FirebaseDataNew: FireBase, ObservableObject { /// ????
     @Published var tasks = [Task]()
+    @Published var comments = [Comment]()
+//MARK: - ?????????
+    // не смог прокинуть это через ServiceLocator и передать эти данные в SwiftUIView
+    // данные выкачиваются на данный момент при помощи  .onAppear, но тогда они каждый раз перезакачиваются при показе вью, неуверен что так правильно, хотел бы использовать кэш своих [Post]
+    // вообще не понимаю в какой момент должна осуществляться закачка данных при создании соцсети, в инсте посмотрел но не понял как они обновляют
+    // при реализации такой как сейчас в addPost() у меня указано обновлять массив с постами но это не работает)
+    
+    
+    // основной вопрос как прокинуть этот метод передачи через сервис ну и сделать так чтоб все работало корректно, как создать и использовать кэш, что нужно сделать чтоб это было реализовано грамотно
+    // так же можешь плз посмотреть, этот файл и ServiceLocator, насколько грамотно я поделил все по функциям и правильно ли реализовал то что ты мне давал на прошлом занятии
 
- 
+//MARK: -
+    //отлельный вопрос: если нажмешь на название опенкола и попадешь на его страницу, то там есть ссылка на инстаграм вот она работает не корректно, так как выводит в консоль кучу текста, сама функция separatedStringsArray полностью отрабатывает мою идею но я боюсь что там где-то бесконечный запрос или что-то в этом роде
     
     func fetchPostsData() {
         let ref = Database.database().reference()
@@ -146,6 +159,31 @@ class FirebaseDataNew: FireBase, ObservableObject {
         guard let uid = AutorizationFireBase.auth.currentUser?.uid else {return}
         let values = [postId : hasSaved == true ? 1 : 0]
         Database.database().reference().child("likes").child(uid).updateChildValues(values)
+    }
+    
+    func addCommentFunc(commentTextDelegate: String, postId: String) {
+        guard let uid = AutorizationFireBase.auth.currentUser?.uid else {return}
+        let comment = ["text" : commentTextDelegate, "creationDate" : Date().timeIntervalSince1970, "uid": uid] as [String : Any]
+        let ref = Database.database().reference().child("comments").child(postId).childByAutoId()
+        ref.updateChildValues(comment)
+        comments.removeAll()
+        fetchComments(postId: postId)
+    }
+    func fetchComments(postId: String) {
+        let ref = Database.database().reference().child("comments").child(postId)
+        ref.observeSingleEvent(of: .value) { snapshot in
+            guard let dictionaries = snapshot.value as? [String: Any] else {return}
+            dictionaries.forEach { key, value in
+                guard let dictionary = value as? [String: Any] else {return}
+                let comment = Comment(commentId: key, dictionary: dictionary)
+                self.comments.append(comment)
+            }
+            print(self.comments)
+            self.comments.sort {(p1, p2) -> Bool in
+                return p1.creationDate.compare(p2.creationDate)  == .orderedDescending
+            }
+        }
+        
     }
 }
 

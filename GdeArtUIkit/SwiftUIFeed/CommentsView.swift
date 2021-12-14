@@ -8,26 +8,56 @@
 import SwiftUI
 
 struct CommentsView: View {
+    @State var text: String = ""
+    @StateObject var model = FirebaseDataNew()
     @State var task : Task
     var body: some View {
         VStack {
             HeaderComments(task: task)
             Divider()
-            HStack {
-                Image("1")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .clipShape(Circle())
-                    .frame(width: 55, height: 55)
-                Text("userName ")
-                    .bold()
-                    .font(Font.system(size: 14))
-                + Text("great job and perfect work")
-                    .font(Font.system(size: 14))
-                Spacer()
+            ForEach(model.comments, id:\.commentId) {comment in
+                HStack {
+                    Image("1")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .clipShape(Circle())
+                        .frame(width: 55, height: 55)
+                    Text("userName ")
+                        .bold()
+                        .font(Font.system(size: 14))
+                    + Text(comment.text)
+                        .font(Font.system(size: 14))
+                    Spacer()
+                }
+                .padding(.leading)
             }
-            .padding(.leading)
             Spacer()
+            VStack {
+                Divider()
+                HStack {
+                    Image("1")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .clipShape(Circle())
+                        .frame(width: 55, height: 55)
+                    TextField("write your message", text: $text)
+                        .textFieldStyle(.roundedBorder)
+                        .padding(.trailing)
+                    Button {
+                        model.addCommentFunc(commentTextDelegate: text, postId: task.post.uid)
+                    } label: {
+                        ZStack {
+                            RoundedRectangle(cornerSize: CGSize(width: 30, height: 20))
+                                .foregroundColor(.blue)
+                                .frame(width: 50, height: 30)
+                            Text("Send")
+                                .foregroundColor(.white)
+                            }
+                    }
+                    .padding(.trailing)
+
+                }
+            }
         }
         .padding(.vertical, 7)
     }

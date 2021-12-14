@@ -15,6 +15,7 @@
 		EE3E10A027612507005FB97C /* PagerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E109F27612507005FB97C /* PagerHelper.swift */; };
 		EE3E10A227612557005FB97C /* UpperTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E10A127612557005FB97C /* UpperTabBar.swift */; };
 		EE3E10A4276127A7005FB97C /* MyCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E10A3276127A7005FB97C /* MyCalls.swift */; };
+		EE3E10A627624564005FB97C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E10A527624564005FB97C /* Comment.swift */; };
 		EE4AF6C427410422004E3553 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6C327410422004E3553 /* AppDelegate.swift */; };
 		EE4AF6C627410422004E3553 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6C527410422004E3553 /* SceneDelegate.swift */; };
 		EE4AF6C827410422004E3553 /* ProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4AF6C727410422004E3553 /* ProfilePageViewController.swift */; };
@@ -51,6 +52,7 @@
 		EE3E109F27612507005FB97C /* PagerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerHelper.swift; sourceTree = "<group>"; };
 		EE3E10A127612557005FB97C /* UpperTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpperTabBar.swift; sourceTree = "<group>"; };
 		EE3E10A3276127A7005FB97C /* MyCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalls.swift; sourceTree = "<group>"; };
+		EE3E10A527624564005FB97C /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		EE4AF6C027410422004E3553 /* GdeArtUIkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GdeArtUIkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE4AF6C327410422004E3553 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE4AF6C527410422004E3553 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				EE7B0D9E27452953009F31C1 /* User.swift */,
+				EE3E10A527624564005FB97C /* Comment.swift */,
 				EE7B0DA52746628D009F31C1 /* Post.swift */,
 			);
 			path = Models;
@@ -368,6 +371,7 @@
 				EE3E109C275D28C9005FB97C /* FireBaseData.swift in Sources */,
 				EE4AF6C627410422004E3553 /* SceneDelegate.swift in Sources */,
 				EE94E5842749308200C64E33 /* ProfileSwiftUIView.swift in Sources */,
+				EE3E10A627624564005FB97C /* Comment.swift in Sources */,
 				EEAF53312747DD1400A13CFA /* SwiftUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
