@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CommentsView: View {
     @State var text: String = ""
+    var service = ServiceLocator().fetchData()
     @StateObject var model = FirebaseDataNew()
     @State var task : Task
     var body: some View {
@@ -58,6 +59,10 @@ struct CommentsView: View {
 
                 }
             }
+        }
+        .onAppear {
+            //MARK: - ??
+            service.fetchComments(postId: task.post.uid)   //// ???/
         }
         .padding(.vertical, 7)
     }
