@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PageView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @ObservedObject var model = art()
+    @ObservedObject var model = FeedViewModel()
     @State var task : Task
     @State var offSet: CGFloat = 0
     var body: some View {

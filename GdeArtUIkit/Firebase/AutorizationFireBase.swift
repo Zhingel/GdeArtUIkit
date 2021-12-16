@@ -13,14 +13,14 @@ import GoogleSignIn
 
 protocol Autorization {
     func autorizationWithGoogle(loginController: UIViewController)
-    func autorizationWithEmail(loginController: UIViewController, email: String?, password: String?)
-    func registrationWithEmail(registerController: UIViewController, email: String?, userName: String?, password: String?)
+    func autorizationWithEmail(email: String?, password: String?, complition: @escaping () -> ())
+    func registrationWithEmail(email: String?, userName: String?, password: String?, complition: @escaping () -> ())
 }
 class AutorizationFireBase: Autorization {
     
     static let auth = Auth.auth()
     
-    func autorizationWithEmail(loginController: UIViewController, email: String?, password: String?) {
+    func autorizationWithEmail(email: String?, password: String?, complition: @escaping () -> ()) {
         guard let email = email else {return}
         guard let password = password else {return}
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
@@ -30,10 +30,10 @@ class AutorizationFireBase: Autorization {
                 return
             }
             print("Succesfull Login", authResult?.user.uid ?? "")
-            loginController.dismiss(animated: false)
+            complition()
         }
     }
-    func registrationWithEmail(registerController: UIViewController, email: String?, userName: String?, password: String?) {
+    func registrationWithEmail(email: String?, userName: String?, password: String?, complition: @escaping () -> ()) {
         guard let email = email else {return}
         guard let userName = userName else {return}
         guard let password = password else {return}
@@ -51,7 +51,7 @@ class AutorizationFireBase: Autorization {
                     return
                 }
                 print("successfuly save user")
-                registerController.dismiss(animated: false)
+                complition()
             }
         }
     }

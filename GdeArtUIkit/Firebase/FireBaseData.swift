@@ -14,7 +14,7 @@ import SwiftUI
 
 protocol FireBase {
     var tasks: [Task] {get}
-    func fetchPostsData()
+    func fetchPostsData(complition: @escaping (Task) -> ())
     func fetchComments(postId: String)
     func addCommentFunc(commentTextDelegate: String, postId: String)
     func fetchUserWithUID(uid: String, complition: @escaping (User) -> ())
@@ -27,6 +27,8 @@ protocol FireBase {
 class FirebaseDataNew: FireBase, ObservableObject { /// ????
     @Published var tasks = [Task]()
     @Published var comments = [Comment]()
+    
+
 //MARK: - ?????????
     // не смог прокинуть это через ServiceLocator и передать эти данные в SwiftUIView
     // данные выкачиваются на данный момент при помощи  .onAppear, но тогда они каждый раз перезакачиваются при показе вью, неуверен что так правильно, хотел бы использовать кэш своих [Post]
@@ -44,34 +46,34 @@ class FirebaseDataNew: FireBase, ObservableObject { /// ????
     // квадра суперсложный вопрос как прокидывать данные в это таббар меню которое я копирнул с обучалки, там вроде пишется апдейтинг и указано что срабатывает при вызове но вызывать там другие функции кроме принта не выходит
     
     
-    func fetchPostsData() {
+    func fetchPostsData(complition: @escaping (Task) -> ()) {
         let ref = Database.database().reference()
+        ref.keepSynced(true)
         ref.child("posts").observeSingleEvent(of: .value) { snapshot in
             guard let dictionaries = snapshot.value as? [String: Any] else {return}
             dictionaries.forEach { key, value in
                 guard let dictionary = value as? [String: Any] else {return}
                 let post = Post(dictionary: dictionary)
                 var postWithId = Task(id: key, post: post, showText: false)
-                guard let userUID = AutorizationFireBase.auth.currentUser?.uid else {return}
-                Database.database().reference().child("likes").child(userUID).child(key).observeSingleEvent(of: .value) { snapshot in
-                    print(snapshot.value)
-                    if let value = snapshot.value as? Int, value == 1 {
-                        print("1111")
-                        postWithId.savedCall = true
-                    } else {
-                        print("222")
-                        postWithId.savedCall = false
+                if let userUID = AutorizationFireBase.auth.currentUser?.uid {
+                    Database.database().reference().child("favorites").child(userUID).child(key).observeSingleEvent(of: .value) { snapshot in
+                        if let value = snapshot.value as? Int, value == 1 {
+                            postWithId.savedCall = true
+                        } else {
+                            postWithId.savedCall = false
+                        }
+                      //  self.tasks.append(postWithId)
+                        complition(postWithId)
                     }
-                    print(postWithId)
-                    self.tasks.append(postWithId)
+                } else {
+                  //  self.tasks.append(postWithId)
+                    complition(postWithId)
+
                 }
-                
             }
         }
         
     }
-    
-
     
     func addPost(values: [String: Any], postId: String, complition: @escaping () -> ()) {
         Database.database().reference().child("posts").child(postId).updateChildValues(values) { (err, ref) in
@@ -83,8 +85,8 @@ class FirebaseDataNew: FireBase, ObservableObject { /// ????
 //            NotificationCenter.default.post(name: NSNotification.newPost,
 //                                            object: nil,
 //                                            userInfo: nil)
-            self.tasks.removeAll()
-            self.fetchPostsData()
+//            self.tasks.removeAll()
+//            self.fetchPostsData()
             complition()
         }
     }
@@ -162,7 +164,7 @@ class FirebaseDataNew: FireBase, ObservableObject { /// ????
     func savedToFavorites(hasSaved: Bool, postId: String) {
         guard let uid = AutorizationFireBase.auth.currentUser?.uid else {return}
         let values = [postId : hasSaved == true ? 1 : 0]
-        Database.database().reference().child("likes").child(uid).updateChildValues(values)
+        Database.database().reference().child("favorites").child(uid).updateChildValues(values)
     }
     
     func addCommentFunc(commentTextDelegate: String, postId: String) {
@@ -175,6 +177,7 @@ class FirebaseDataNew: FireBase, ObservableObject { /// ????
     }
     func fetchComments(postId: String) {
         let ref = Database.database().reference().child("comments").child(postId)
+        ref.keepSynced(true)
         ref.observeSingleEvent(of: .value) { snapshot in
             guard let dictionaries = snapshot.value as? [String: Any] else {return}
             dictionaries.forEach { key, value in

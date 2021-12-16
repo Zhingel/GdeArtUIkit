@@ -8,17 +8,18 @@
 import Foundation
 import FirebaseDatabase
 import SwiftUI
-class art: ObservableObject {
+class FeedViewModel: ObservableObject {
     @Published var tasks = [Task]()
+    @Published var comments = [Comment]()
+
     
-//    init() {
-//   //     let fetchingData = ServiceLocator().fetchData()
-//  //      fetchData()
-//     
-////        print(fetchingData.tasks)
-//    
-//   
-//    }
+    init() {
+        let fetchingData = ServiceLocator().fetchData()
+        fetchingData.fetchPostsData { task in
+            self.tasks.append(task)
+        }
+     
+    }
     
     func separatedStringsArray(instagram: String) -> [String] {
         let username = instagram.replacingOccurrences(of: "@", with: "")
@@ -41,19 +42,7 @@ class art: ObservableObject {
         }
     }
     
-        func fetchData() {
-            let ref = Database.database().reference()
-            ref.child("posts").observeSingleEvent(of: .value) { snapshot in
-                guard let dictionaries = snapshot.value as? [String: Any] else {return}
-                dictionaries.forEach { key, value in
-                    guard let dictionary = value as? [String: Any] else {return}
-                    print(dictionary)
-                    let post = Post(dictionary: dictionary)
-                    let postWithId = Task(id: key, post: post, showText: false)
-                    self.tasks.append(postWithId)
-                }
-            }
-        }
+     
    
 }
 

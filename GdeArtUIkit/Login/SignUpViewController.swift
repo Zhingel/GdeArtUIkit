@@ -68,7 +68,9 @@ class SignUpViewController: UIViewController {
     }
 //MARK: - Button's Handlers
     @objc func createUser() {
-        registration.registrationWithEmail(registerController: self, email: email.text, userName: userName.text, password: password.text)
+        registration.registrationWithEmail(email: email.text, userName: userName.text, password: password.text) {
+            self.dismiss(animated: false)
+        }
     }
     @objc func handleLogin() {
         navigationController?.popToRootViewController(animated: false)

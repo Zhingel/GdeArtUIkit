@@ -16,11 +16,11 @@ struct ProfileSwiftUIView: View {
     var loginMenuHandler: (() -> Void)?
     var body: some View {
         UpperTabBar(userUid: user?.uid ?? "", tasks: model.tasks)
-            .onAppear(perform: {
-                        if model.tasks.isEmpty {
-                            self.model.fetchPostsData()
-                        }
-                    })
+//            .onAppear(perform: {
+////                        if model.tasks.isEmpty {
+//                            self.model.fetchPostsData()
+////                        }
+//                    })
     //            .onReceive(NotificationCenter.default.publisher(for: NSNotification.newPost)) { _ in
     //                self.model.fetchData()
     //            }

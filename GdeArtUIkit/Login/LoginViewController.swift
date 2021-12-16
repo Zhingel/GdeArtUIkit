@@ -64,7 +64,9 @@ class LoginViewController: UIViewController {
     }
     //MARK: - Button handlers
     @objc func loginUser() {
-        authorization.autorizationWithEmail(loginController: self, email: email.text, password: password.text)
+        authorization.autorizationWithEmail(email: email.text, password: password.text) {
+            self.dismiss(animated: false)
+        }
     }
     @objc func handleSignUp() {
         let signUpViewController = SignUpViewController()

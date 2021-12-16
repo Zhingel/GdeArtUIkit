@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         FirebaseApp.configure()
+        Database.database().isPersistenceEnabled = true
       GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
         if error != nil || user == nil {
           // Show the app's signed-out state.

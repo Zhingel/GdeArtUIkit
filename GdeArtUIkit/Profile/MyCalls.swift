@@ -20,11 +20,11 @@ struct MyCalls: View {
             }
             
         }
-        .onAppear(perform: {
-                    if model.tasks.isEmpty {
-                        self.model.fetchPostsData()
-                    }
-                })
+//        .onAppear(perform: {
+////                    if model.tasks.isEmpty {
+//                        self.model.fetchPostsData()
+////                    }
+//                })
        
     }
 }
