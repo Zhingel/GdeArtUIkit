@@ -29,23 +29,7 @@ class FirebaseDataNew: FireBase, ObservableObject { /// ????
     @Published var comments = [Comment]()
     
 
-//MARK: - ?????????
-    // не смог прокинуть это через ServiceLocator и передать эти данные в SwiftUIView
-    // данные выкачиваются на данный момент при помощи  .onAppear, но тогда они каждый раз перезакачиваются при показе вью, неуверен что так правильно, хотел бы использовать кэш своих [Post]
-    // вообще не понимаю в какой момент должна осуществляться закачка данных при создании соцсети, в инсте посмотрел но не понял как они обновляют
-    // при реализации такой как сейчас в addPost() у меня указано обновлять массив с постами но это не работает)
-    
-    
-    // основной вопрос как прокинуть этот метод передачи через сервис ну и сделать так чтоб все работало корректно, как создать и использовать кэш, что нужно сделать чтоб это было реализовано грамотно
-    // так же можешь плз посмотреть, этот файл и ServiceLocator, насколько грамотно я поделил все по функциям и правильно ли реализовал то что ты мне давал на прошлом занятии
-
-//MARK: -
-    //отлельный вопрос: если нажмешь на название опенкола и попадешь на его страницу, то там есть ссылка на инстаграм вот она работает не корректно, так как выводит в консоль кучу текста, сама функция separatedStringsArray полностью отрабатывает мою идею но я боюсь что там где-то бесконечный запрос или что-то в этом роде
-    
-    
-    // квадра суперсложный вопрос как прокидывать данные в это таббар меню которое я копирнул с обучалки, там вроде пишется апдейтинг и указано что срабатывает при вызове но вызывать там другие функции кроме принта не выходит
-    
-    
+//MARK: - FeedPosts:
     func fetchPostsData(complition: @escaping (Task) -> ()) {
         let ref = Database.database().reference()
         ref.keepSynced(true)
@@ -62,33 +46,39 @@ class FirebaseDataNew: FireBase, ObservableObject { /// ????
                         } else {
                             postWithId.savedCall = false
                         }
-                      //  self.tasks.append(postWithId)
                         complition(postWithId)
                     }
                 } else {
-                  //  self.tasks.append(postWithId)
                     complition(postWithId)
-
                 }
             }
         }
-        
     }
     
-    func addPost(values: [String: Any], postId: String, complition: @escaping () -> ()) {
-        Database.database().reference().child("posts").child(postId).updateChildValues(values) { (err, ref) in
-            if let err = err {
-                print("Failed", err)
+  
+    func savedToFavorites(hasSaved: Bool, postId: String) {
+        guard let uid = AutorizationFireBase.auth.currentUser?.uid else {return}
+        let values = [postId : hasSaved == true ? 1 : 0]
+        Database.database().reference().child("favorites").child(uid).updateChildValues(values)
+    }
+    
+    
+//MARK: - UserProfile:
+    func fetchImageWithURL(urlString: String, complition: @escaping (UIImage) ->()) {
+        guard let imageURL = URL(string: urlString) else {return}
+        URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
+            if let error = error {
+                print("Error fetch image", error)
                 return
             }
-            print("Successfuly save to db")
-//            NotificationCenter.default.post(name: NSNotification.newPost,
-//                                            object: nil,
-//                                            userInfo: nil)
-//            self.tasks.removeAll()
-//            self.fetchPostsData()
-            complition()
-        }
+            guard let data = data else {return}
+            guard let photoImage = UIImage(data: data) else {return}
+
+            DispatchQueue.main.async {
+                complition(photoImage)
+            }
+
+        }.resume()
     }
     
     func uploadImageToFireStore(uid: String, image: UIImage) {
@@ -123,19 +113,7 @@ class FirebaseDataNew: FireBase, ObservableObject { /// ????
                 })
         }
     }
-    func deleteImageFromFireStore(imageName: String) {
-//        // Create a reference to the file to delete
-//        let storageRef = Storage.storage().reference().child("profile_images").
-//
-//        // Delete the file
-//        desertRef.delete { error in
-//          if let error = error {
-//            // Uh-oh, an error occurred!
-//          } else {
-//            // File deleted successfully
-//          }
-//        }
-    }
+    
     func fetchUserWithUID(uid: String, complition: @escaping (User) -> ()) {
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { snapshot in
             guard let userDictionary = snapshot.value as? [String: Any] else {return}
@@ -145,28 +123,9 @@ class FirebaseDataNew: FireBase, ObservableObject { /// ????
             print(err)
         }
     }
-    func fetchImageWithURL(urlString: String, complition: @escaping (UIImage) ->()) {
-        guard let imageURL = URL(string: urlString) else {return}
-        URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
-            if let error = error {
-                print("Error fetch image", error)
-                return
-            }
-            guard let data = data else {return}
-            guard let photoImage = UIImage(data: data) else {return}
-
-            DispatchQueue.main.async {
-                complition(photoImage)
-            }
-
-        }.resume()
-    }
-    func savedToFavorites(hasSaved: Bool, postId: String) {
-        guard let uid = AutorizationFireBase.auth.currentUser?.uid else {return}
-        let values = [postId : hasSaved == true ? 1 : 0]
-        Database.database().reference().child("favorites").child(uid).updateChildValues(values)
-    }
     
+    
+//MARK: - Comments:
     func addCommentFunc(commentTextDelegate: String, postId: String) {
         guard let uid = AutorizationFireBase.auth.currentUser?.uid else {return}
         let comment = ["text" : commentTextDelegate, "creationDate" : Date().timeIntervalSince1970, "uid": uid] as [String : Any]
@@ -192,5 +151,57 @@ class FirebaseDataNew: FireBase, ObservableObject { /// ????
         }
         
     }
+    
+    
+    
+//MARK: - New Post:
+    func addPost(values: [String: Any], postId: String, complition: @escaping () -> ()) {
+        Database.database().reference().child("posts").child(postId).updateChildValues(values) { (err, ref) in
+            if let err = err {
+                print("Failed", err)
+                return
+            }
+            print("Successfuly save to db")
+//            NotificationCenter.default.post(name: NSNotification.newPost,
+//                                            object: nil,
+//                                            userInfo: nil)
+//            self.tasks.removeAll()
+//            self.fetchPostsData()
+            complition()
+        }
+    }
+    
+//MARK: - Another:
+    
+    func deleteImageFromFireStore(imageName: String) {
+//        // Create a reference to the file to delete
+//        let storageRef = Storage.storage().reference().child("profile_images").
+//
+//        // Delete the file
+//        desertRef.delete { error in
+//          if let error = error {
+//            // Uh-oh, an error occurred!
+//          } else {
+//            // File deleted successfully
+//          }
+//        }
+    }
 }
 
+
+//MARK: - ?????????
+    // не смог прокинуть это через ServiceLocator и передать эти данные в SwiftUIView
+    // данные выкачиваются на данный момент при помощи  .onAppear, но тогда они каждый раз перезакачиваются при показе вью, неуверен что так правильно, хотел бы использовать кэш своих [Post]
+    // вообще не понимаю в какой момент должна осуществляться закачка данных при создании соцсети, в инсте посмотрел но не понял как они обновляют
+    // при реализации такой как сейчас в addPost() у меня указано обновлять массив с постами но это не работает)
+    
+    
+    // основной вопрос как прокинуть этот метод передачи через сервис ну и сделать так чтоб все работало корректно, как создать и использовать кэш, что нужно сделать чтоб это было реализовано грамотно
+    // так же можешь плз посмотреть, этот файл и ServiceLocator, насколько грамотно я поделил все по функциям и правильно ли реализовал то что ты мне давал на прошлом занятии
+
+//MARK: -
+    //отлельный вопрос: если нажмешь на название опенкола и попадешь на его страницу, то там есть ссылка на инстаграм вот она работает не корректно, так как выводит в консоль кучу текста, сама функция separatedStringsArray полностью отрабатывает мою идею но я боюсь что там где-то бесконечный запрос или что-то в этом роде
+    
+    
+    // квадра суперсложный вопрос как прокидывать данные в это таббар меню которое я копирнул с обучалки, там вроде пишется апдейтинг и указано что срабатывает при вызове но вызывать там другие функции кроме принта не выходит
+    

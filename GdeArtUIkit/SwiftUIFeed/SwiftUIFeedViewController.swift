@@ -10,7 +10,7 @@ import SwiftUI
 
 class SwiftUIFeedViewController: UIViewController {
     var tasks: String = ""
-    let contentView = UIHostingController(rootView: SwiftUIView())
+    let contentView = UIHostingController(rootView: SwiftUIFeedView())
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SwiftUIView: View {
+struct SwiftUIFeedView: View {
     @State var showText = false
     @ObservedObject var model = FeedViewModel()
 

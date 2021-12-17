@@ -9,7 +9,8 @@ import SwiftUI
 
 struct PageView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @ObservedObject var model = FeedViewModel()
+    @StateObject var model = FeedViewModel()
+    @StateObject var viewModel = OpenCallProfileViewModel()
     @State var task : Task
     @State var offSet: CGFloat = 0
     var body: some View {
@@ -128,16 +129,16 @@ struct PageView: View {
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 15, height: 15)
-                                    ForEach(model.separatedStringsArray(instagram: task.post.instagrammLink ?? ""), id: \.self) { name in
-                                        if name != "" {
-                                            Button {
-                                                model.handleInstagram(instagram: name)
-                                            } label: {
-                                                Text(name)
-                                                    .font(.system(size: 16, weight: .regular, design: .default))
-                                            }
-                                        }
-                                    }
+//                                    ForEach(model.separatedStringsArray(instagram: task.post.instagrammLink ?? ""), id: \.self) { name in
+//                                        if name != "" {
+//                                            Button {
+//                                                model.handleInstagram(instagram: name)
+//                                            } label: {
+//                                                Text(name)
+//                                                    .font(.system(size: 16, weight: .regular, design: .default))
+//                                            }
+//                                        }
+//                                    }
                                     
                                 }
 

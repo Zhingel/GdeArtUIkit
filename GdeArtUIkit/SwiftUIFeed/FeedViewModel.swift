@@ -6,25 +6,27 @@
 //
 
 import Foundation
-import FirebaseDatabase
 import SwiftUI
 class FeedViewModel: ObservableObject {
     @Published var tasks = [Task]()
     @Published var comments = [Comment]()
-
     
     init() {
         let fetchingData = ServiceLocator().fetchData()
         fetchingData.fetchPostsData { task in
             self.tasks.append(task)
         }
+        print("init ViewModel")
      
     }
     
     func separatedStringsArray(instagram: String) -> [String] {
+        print("stars")
         let username = instagram.replacingOccurrences(of: "@", with: "")
         let name = username.deletingPrefix("https://www.instagram.com/").deletingPrefix("https://instagram.com/").deletingPrefix("www.instagram.com/").deletingPrefix("instagram.com/").deletingPrefix("http://www.instagram.com/")
             let instagramNames: String = name
+            print("llllllll    ", instagramNames)
+            print("ddddddd     ", name)
             let instagramArray = instagramNames.components(separatedBy: [" ", ","])
         print(instagramArray) ////????
         return instagramArray
