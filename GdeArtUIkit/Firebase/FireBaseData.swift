@@ -10,7 +10,7 @@ import Firebase
 import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
-import SwiftUI
+
 
 protocol FireBase {
     var tasks: [Task] {get}
