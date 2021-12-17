@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SwiftUIFeedView: View {
     @State var showText = false
-    @ObservedObject var model = FeedViewModel()
+    @StateObject var model = FeedViewModel()
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {

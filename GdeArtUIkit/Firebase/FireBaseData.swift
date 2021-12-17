@@ -15,6 +15,7 @@ import FirebaseAuth
 protocol FireBase {
     var tasks: [Task] {get}
     func fetchPostsData(complition: @escaping (Task) -> ())
+    func fetchSelectedPost(selectedPost: String, complition: @escaping (Post) -> ()) 
     func fetchComments(postId: String)
     func addCommentFunc(commentTextDelegate: String, postId: String)
     func fetchUserWithUID(uid: String, complition: @escaping (User) -> ())
@@ -46,15 +47,24 @@ class FirebaseDataNew: FireBase, ObservableObject { /// ????
                         } else {
                             postWithId.savedCall = false
                         }
+                        self.tasks.append(postWithId)
                         complition(postWithId)
                     }
                 } else {
+                    self.tasks.append(postWithId)
                     complition(postWithId)
                 }
             }
         }
     }
-    
+    func fetchSelectedPost(selectedPost: String, complition: @escaping (Post) -> ()) {
+        let ref = Database.database().reference().child("posts").child(selectedPost)
+        ref.observeSingleEvent(of: .value) { snapshot in
+            guard let dictionary = snapshot.value as? [String: Any] else {return}
+            let post = Post(dictionary: dictionary)
+            complition(post)
+        }
+    }
   
     func savedToFavorites(hasSaved: Bool, postId: String) {
         guard let uid = AutorizationFireBase.auth.currentUser?.uid else {return}
@@ -73,7 +83,7 @@ class FirebaseDataNew: FireBase, ObservableObject { /// ????
             }
             guard let data = data else {return}
             guard let photoImage = UIImage(data: data) else {return}
-
+            
             DispatchQueue.main.async {
                 complition(photoImage)
             }

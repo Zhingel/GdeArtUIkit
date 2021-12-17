@@ -10,9 +10,10 @@ import SwiftUI
 
 class OpenCallProfileViewModel: ObservableObject {
     @Published var task: Task?
-    
+    @Published var instagramLink = [String]()
     init() {
-      print("Start")
+       // print(feedViewModel.comments.count)
+        
     }
     
     

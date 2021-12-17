@@ -9,9 +9,9 @@ import SwiftUI
 
 struct PageView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @StateObject var model = FeedViewModel()
-    @StateObject var viewModel = OpenCallProfileViewModel()
     @State var task : Task
+    var service = ServiceLocator().fetchData()
+    @StateObject var viewModel = OpenCallProfileViewModel()
     @State var offSet: CGFloat = 0
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -129,16 +129,16 @@ struct PageView: View {
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 15, height: 15)
-//                                    ForEach(model.separatedStringsArray(instagram: task.post.instagrammLink ?? ""), id: \.self) { name in
-//                                        if name != "" {
-//                                            Button {
-//                                                model.handleInstagram(instagram: name)
-//                                            } label: {
-//                                                Text(name)
-//                                                    .font(.system(size: 16, weight: .regular, design: .default))
-//                                            }
-//                                        }
-//                                    }
+                                    ForEach(viewModel.separatedStringsArray(instagram: task.post.instagrammLink ?? ""), id: \.self) { name in
+                                        if name != "" {
+                                            Button {
+                                                viewModel.handleInstagram(instagram: name)
+                                            } label: {
+                                                Text(name)
+                                                    .font(.system(size: 16, weight: .regular, design: .default))
+                                            }
+                                        }
+                                    }
                                     
                                 }
 
@@ -160,6 +160,11 @@ struct PageView: View {
         }
         .navigationBarHidden(true)
         .ignoresSafeArea(.all, edges: .top)
+        .onAppear {
+            service.fetchSelectedPost(selectedPost: task.id) { post in
+                self.task.post = post ///?????????
+            }
+        }
     }
     func blurViewOpacity() -> Double {
         let progress = -(offSet + 100) / 100
